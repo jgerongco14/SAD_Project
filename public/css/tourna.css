@@ -1,0 +1,33 @@
+.bg {
+    background-image: url("/image/tourna.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bot-line {
+    position: relative;
+    padding: 0;
+}
+
+.line {
+    background-color: black;
+    height: 50px;
+    padding: 0;
+    width: 100%;
+}
+
+.bot-btn {
+    border-radius: 20px 0px;
+    width: 200px;
+}
+
+
+/* .carousel-inner {
+    display: flex;
+}
+
+.carousel-item {
+    display: block;
+    margin-right: 0;
+    flex: 0 0 calc(100%/3);
+} */

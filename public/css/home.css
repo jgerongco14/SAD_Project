@@ -1,0 +1,37 @@
+.bg {
+    background-image: url("/image/bgmain.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bot-btn {
+    border-radius: 30px 10px;
+    width: 250px;
+}
+
+.top {
+    border-radius: 5px;
+}
+
+.line {
+    background-color: black;
+    height: 120px;
+    padding: 0;
+    width: 100%;
+}
+
+.bot-line {
+    position: relative;
+    padding: 0;
+}
+
+.bot-row {
+    bottom: 50px;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+img.img-bot {
+    width: 40%;
+}
