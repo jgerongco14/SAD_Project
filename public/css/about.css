@@ -1,0 +1,14 @@
+* {
+    text-align: justify;
+}
+
+.bgpic {
+    background-image: url("/image/about.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+img .img-bot {
+    height: 50;
+    width: 50;
+}
