@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\LoginController;
+>>>>>>> master
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+<<<<<<< HEAD
 Route::get('/', function () {
     return view('home');
 });
@@ -48,3 +53,68 @@ Route::get('/player', function () {
 Route::get('/manage_tourna', function () {
     return view('manage_tourna');
 });
+=======
+// Route::get('/folder/{file}', function ($file) {
+//     return response()->file(public_path("folder/{$file}"));
+// })->name('folder');
+
+Route::get('/', function () {
+    return view('home.home');
+});
+
+
+Route::get('/gallery', function () {
+    return view('profile.gallery');
+});
+
+Route::get('/tournament', function () {
+    return view('tournament.tournament');
+});
+
+Route::get('/tourna_content', function () {
+    return view('tournament.tourna_content');
+});
+
+Route::get('/clubs', function () {
+    return view('clubs.clubs');
+});
+
+Route::get('/about', function () {
+    return view('about.about');
+});
+
+Route::get('/coach', function () {
+    return view('list.coach');
+});
+
+Route::get('/player', function () {
+    return view('list.player');
+});
+
+Route::get('/events', function () {
+    return view('events.events');
+});
+
+Route::get('/manage_tourna', function () {
+    return view('tournament.manage_tourna');
+});
+
+Route::get('/view_tourna', function () {
+    return view('tournament.view_tourna');
+});
+
+Route::get('/my_profile', function () {
+    return view('profile.my_profile');
+});
+
+Route::get('/admin', function () {
+    return view('admin.admin');
+});
+
+Route::get('/view_club', function () {
+    return view('clubs.view_club');
+});
+
+
+Route::post('/', [LoginController::class,'registerUser'])->name('registerUser');
+>>>>>>> master
