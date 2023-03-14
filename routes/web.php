@@ -1,10 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\LoginController;
->>>>>>> master
 
 /*
 |--------------------------------------------------------------------------
@@ -17,43 +14,6 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-<<<<<<< HEAD
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/gallery', function () {
-    return view('gallery');
-});
-
-Route::get('/tournament', function () {
-    return view('tournament');
-});
-
-Route::get('/tourna_content', function () {
-    return view('tourna_content');
-});
-
-Route::get('/clubs', function () {
-    return view('clubs');
-});
-
-Route::get('/about', function () {
-    return view('about');
-});
-
-Route::get('/coach', function () {
-    return view('coach');
-});
-
-Route::get('/player', function () {
-    return view('player');
-});
-
-Route::get('/manage_tourna', function () {
-    return view('manage_tourna');
-});
-=======
 // Route::get('/folder/{file}', function ($file) {
 //     return response()->file(public_path("folder/{$file}"));
 // })->name('folder');
@@ -117,4 +77,3 @@ Route::get('/view_club', function () {
 
 
 Route::post('/', [LoginController::class,'registerUser'])->name('registerUser');
->>>>>>> master
