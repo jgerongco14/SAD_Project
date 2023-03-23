@@ -8,7 +8,7 @@
     <title>Pickleball</title>
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     @extends('extentions.bootstrap_links')
-    @section('css')
+    @section('bootstrap_links')
     @endsection
 </head>
 
@@ -61,9 +61,6 @@
         </div>
         <div class="line"></div>
     </div>
-    @endsection
-
-    @section('js')
     @endsection
 
 </body>
