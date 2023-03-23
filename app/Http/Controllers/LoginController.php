@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -13,15 +14,18 @@ class LoginController extends Controller
             'password'=>'required',
         ]);
 
-        $user = new User;
+        $user = new User();
 
         $user->username = $request->input('username');
         $user->password = $request->input('password');
+        $user->password = Hash::make($request->input('password'));
+        $result = $user->save();
 
-        $user->save();
-
-        return redirect('home')->with('success','Data Saved');
-
+        if ($result) {
+            return redirect()->back()->with('success', 'You have registered successfully');
+        } else {
+            return redirect()->back()->with('fail', 'Something goes wrong');
+        }
     }
 
 }
