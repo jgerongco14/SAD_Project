@@ -1,0 +1,11 @@
+.bg {
+    background-image: url("/image/loginpage.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 90vh;
+}
+
+.card {
+    height: 95%;
+    width: 95%;
+}

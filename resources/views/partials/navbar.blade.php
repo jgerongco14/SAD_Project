@@ -1,5 +1,5 @@
 <!-- modal for login -->
-<div class="container">
+<!-- <div class="container">
   <div class="col">
     <form action="">
       <div class="modal fade" id="login">
@@ -17,9 +17,17 @@
                 </div>
               </div>
               <div class="row justify-content-center">
-                <div class="col-10 form-group">
-                  <h6 class="fw-bold">Password</h6>
-                  <input class="form-control" data-bs-toggle="password" type="password" placeholder="password" aria-label="password">
+                <h6 class="fw-bold">Password</h6>
+                <div class="form-group input-group mb-3">
+                  <input type="password" class="form-control " id="password" />
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <a href="#" id="icon-click">
+                        <i class="fa fa-fw field-icon toggleIcon fa-eye-slash">
+                        </i>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="row justify-content-end">
@@ -37,7 +45,7 @@
       </div>
     </form>
   </div>
-</div>
+</div> -->
 
 
 
@@ -72,7 +80,7 @@
 </div>
 
 <!-- modal for registration -->
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col">
       <div class="modal fade" id="reg">
@@ -83,7 +91,7 @@
             </div>
             <div class="modal-body d-grid gap-3">
               <form action="{{route('registerUser')}}" method="POST">
-                
+
                 <div class="row justify-content-center">
                   <div class="col-9">
                     <div class="form-group">
@@ -131,9 +139,9 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <script>
+  <!-- <script>
     const togglebutton = document.querySelector(".toggleIcon");
     const password = document.querySelector("#password");
     togglebutton.addEventListener('click', function(e) {
@@ -141,10 +149,10 @@
       password.setAttribute("type", type);
       this.classList.toggle('fa-eye');
     });
-  </script>
+  </script> -->
 
 
-<!-- <div class="container">
+  <!-- <div class="container">
   @if(count($errors) > 0)
 
   <div class="alert alert-danger">
@@ -191,8 +199,8 @@
           <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
-        <button type="button" class="btn btn-warning mx-2" data-bs-toggle="modal" data-bs-target="#login">Login</button>
-        <button type="button" class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#myModal">Sign Up</button>
+        <!-- <button type="button" class="btn btn-warning mx-2" data-bs-toggle="modal" data-bs-target="#login">Login</button>
+        <button type="button" class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#myModal">Sign Up</button> -->
       </div>
     </div>
 </div>

@@ -19,7 +19,7 @@ use App\Http\Controllers\LoginController;
 // })->name('folder');
 
 Route::get('/', function () {
-    return view('home.home');
+    return view('login.login');
 });
 
 
