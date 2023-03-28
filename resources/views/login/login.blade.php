@@ -16,25 +16,26 @@
     @extends('partials.navbar')
     @section('content')
     <br><br>
-    <div class="container-fluid bg-dark">
+    <div class="container-fluid bgcon">
         <div class="row mt-2">
             <div class="col-3 bg d-flex justify-content-center align-items-center ">
                 <h4 class="fw-bold text-center " style="color: white">“Pickleball is cheaper than therapy.”</h4>
             </div>
             <div class="col-9 d-flex justify-content-center align-items-center">
-                <div class="card">
-                    <div class="card-body">
+                <div class="card h-75 w-75 bg-dark">
+                    <div class="card-body bgcard">
                         <div class="col-12">
                             <div class="row justify-content-center">
                                 <div class="col-10">
-                                    <h4 class="fw-bold my-3">LOGIN TO ACCOUNT</h4>
+                                    <h4 class="fw-bold text-warning mt-3">LOGIN TO ACCOUNT</h4>
+                                    <br>
                                     <div class="form-group">
-                                        <h6 class="fw-bold my-3">Username</h6>
+                                        <h6 class="fw-bold text-warning my-3">Username</h6>
                                         <input class="form-control " placeholder="username" type="text" name="username">
                                     </div>
-                                    <h6 class="fw-bold my-3">Password</h6>
+                                    <h6 class="fw-bold text-warning my-3">Password</h6>
                                     <div class="form-group input-group mb-3">
-                                        <input type="password" class="form-control" id="password" name="password" />
+                                        <input type="password" class="form-control" placeholder="password" id="password" name="password" />
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <a href="#" id="icon-click">
@@ -46,11 +47,11 @@
                                     </div>
                                 </div>
                                 <div class="row justify-content-end my-2">
-                                    <div class="col-3">
-                                        <a href="#">Forgot your password?</a>
+                                    <div class="col-4">
+                                        <a href="#" class="fw-bold text-warning">Forgot your password?</a>
                                     </div>
                                 </div>
-                                <div class="row justify-content-center my-4">
+                                <div class="row justify-content-center mt-5">
                                     <div class="col-6 d-flex justify-content-center">
                                         <button class="btn btn-warning w-50 fw-bold" type="submit">SIGN UP</button>
                                     </div>
