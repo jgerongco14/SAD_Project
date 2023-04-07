@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DataController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 
@@ -18,9 +19,10 @@ use App\Http\Controllers\LoginController;
 //     return response()->file(public_path("folder/{$file}"));
 // })->name('folder');
 
-Route::get('/', function () {
-    return view('login.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
+
 
 
 Route::get('/gallery', function () {
@@ -76,4 +78,27 @@ Route::get('/view_club', function () {
 });
 
 
-Route::post('/', [LoginController::class,'registerUser'])->name('registerUser');
+//front-end routes
+
+// going to registration page
+Route::get('/login',[LoginController::class,'login']);
+
+// going to registration page
+Route::get('/registration',[LoginController::class,'registration']);
+
+// going to the home/index page after successfully login
+Route::get('/home',[CustomAuthController::class,'home']);
+
+
+
+//back-end routes
+
+//checking the db connection
+Route::get('/check-connection', [YourController::class, 'checkDbConnection']);
+
+// login and register controller
+Route::post('/register-user', [LoginController::class,'registerUser'])->name('registerUser');
+Route::post('/login-user', [LoginController::class,'loginUser'])->name('login-user');
+
+//get data from database and paste it to text field in profile page
+// Route::get('/profile-data', DataController::class,'profileData')->name('profileData');

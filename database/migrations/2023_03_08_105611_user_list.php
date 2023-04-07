@@ -14,7 +14,7 @@ class UserList extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('id')->unique();
             $table->binary('photo')->nullable();
             $table->string('firstName')->nullable();
             $table->string('lastName')->nullable();
