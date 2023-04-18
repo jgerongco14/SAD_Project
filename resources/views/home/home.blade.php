@@ -13,8 +13,8 @@
 </head>
 
 <body>
-
-    @extends('partials.navbar')
+    <a href="{{ route('home', request()->route('id')) }}"></a>
+    @extends('partials.navbar2')
     @section('content')
 
     <br><br>

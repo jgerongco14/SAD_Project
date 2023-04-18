@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -23,11 +24,12 @@ class LoginController extends Controller
         return view('home.home');
     }
 
-    public function registerUser(Request $request) {
-        $this->validate($request,[
-            'alias'=>'required',
-            'username'=>'required',
-            'password'=>'required|confirmed',
+    public function registerUser(Request $request)
+    {
+        $this->validate($request, [
+            'alias' => 'required',
+            'username' => 'required',
+            'password' => 'required|confirmed',
         ]);
 
         $user = new User();
@@ -44,19 +46,23 @@ class LoginController extends Controller
         }
     }
 
-    
+
     public function loginUser(Request $request)
     {
         $request->validate([
             'username' => 'required',
             'password' => 'required',
         ]);
-         $user = User::where('username', '=', $request->username)->first();
+        $user = User::where('username', '=', $request->username)->first();
 
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 $request->session()->put('id', $user->id);
-                return redirect('home');
+                if ($request->username === 'admin') {
+                    return redirect('admin');
+                } else {
+                    return redirect()->route('home', ['id' => $user->id]);
+                }
             } else {
                 return back()->with('fail', 'Password not matches.');
                 return redirect()->back()->with(['input' => $request->all()]);
@@ -67,4 +73,38 @@ class LoginController extends Controller
         }
     }
 
+    // public function loginAdmin(Request $request)
+    // {
+    //     $request->validate([
+    //         'username' => 'required',
+    //         'password' => 'required',
+    //     ]);
+    //     $user = User::where('username', '=', $request->username)->first();
+
+    //     if ($user) {
+    //         if (Hash::check($request->password, $user->password)) {
+    //             $request->session()->put('id', $user->id);
+    //             if ($request->username === 'admin') {
+    //                 return redirect('admin');
+    //             } else {
+    //                 return redirect('home');
+    //             }
+    //         } else {
+    //             return back()->with('fail', 'Password not matches.')->withInput($request->except('password'));
+    //         }
+    //     } else {
+    //         return back()->with('fail', 'This username is not registered.')->withInput($request->except('password'));
+    //     }
+    // }
+
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
+
+    public function forgetpassword()
+    {
+    }
 }

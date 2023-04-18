@@ -62,7 +62,7 @@
                                         <span class="text-danger"> @error('password') {{$message}} @enderror</span>
                                         <h6 class="fw-bold text-warning my-3">Confirm Password</h6>
                                         <div class="form-group input-group mb-3">
-                                            <input type="password" class="form-control" placeholder="Confirm Password" id="cpassword" name="cpassword" value="{{old('password')}}" required />
+                                            <input type="password" class="form-control" placeholder="Confirm Password" id="password_confirmation" name="password_confirmation" value="{{old('password')}}" required />
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <a href="#" id="icon-click">
@@ -72,7 +72,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <span class="text-danger"> @error('confirm password') {{$message}} @enderror</span>
+                                        <span class="text-danger"> @error('password') {{$message}} @enderror</span>
                                     </div>
                                     <div class="row text-center my-5">
                                         <div class="col-6">
@@ -100,7 +100,7 @@
 
             // Get the password input element
             var password = document.querySelector('#password');
-            var cpassword = document.querySelector('#cpassword');
+            var cpassword = document.querySelector('#password_confirmation');
 
             // Add event listener for click event on toggle icon
             toggleIcon.addEventListener('click', function(e) {
