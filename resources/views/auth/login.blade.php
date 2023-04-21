@@ -28,10 +28,18 @@
                             <form action="{{route('login-user')}}" method="POST">
                                 @csrf
                                 @if (Session::has('success'))
-                                <div class="alert alert-success">{{Session::get('success')}}</div>
+                                <script>
+                                    window.onload = function() {
+                                        alert("{{ Session::get('success') }}");
+                                    };
+                                </script>
                                 @endif
                                 @if (Session::has('fail'))
-                                <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                                <script>
+                                    window.onload = function() {
+                                        alert("{{ Session::get('fail') }}");
+                                    };
+                                </script>
                                 @endif
                                 <div class="row justify-content-center">
                                     <div class="col-10">
@@ -58,7 +66,7 @@
                                     </div>
                                     <div class="row justify-content-end my-2">
                                         <div class="col-7">
-                                            <a href="/registration" class="fw-bold text-warning">SIGN UP HERE!</a>
+                                            <a href="{{route('registration')}}" class="fw-bold text-warning">SIGN UP HERE!</a>
                                         </div>
                                         <div class="col-4">
                                             <a href="" class="fw-bold text-warning">Forgot your password?</a>

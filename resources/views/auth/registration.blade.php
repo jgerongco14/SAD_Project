@@ -28,10 +28,18 @@
                             <form action="{{route('registerUser')}}" method="POST">
                                 @csrf
                                 @if (Session::has('success'))
-                                <div class="alert alert-success">{{Session::get('success')}}</div>
+                                <script>
+                                    window.onload = function() {
+                                        alert("{{ Session::get('success') }}");
+                                    };
+                                </script>
                                 @endif
                                 @if (Session::has('fail'))
-                                <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                                <script>
+                                    window.onload = function() {
+                                        alert("{{ Session::get('fail') }}");
+                                    };
+                                </script>
                                 @endif
                                 <div class="row justify-content-center">
                                     <div class="col-10">

@@ -14,10 +14,6 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function registration()
-    {
-        return view('auth.registration');
-    }
 
     public function home()
     {
@@ -47,56 +43,21 @@ class LoginController extends Controller
     }
 
 
-    public function loginUser(Request $request)
+  public function loginUser(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'username' => 'required',
             'password' => 'required',
         ]);
-        $user = User::where('username', '=', $request->username)->first();
-
-        if ($user) {
-            if (Hash::check($request->password, $user->password)) {
-                $request->session()->put('id', $user->id);
-                if ($request->username === 'admin') {
-                    return redirect('admin');
-                } else {
-                    return redirect()->route('home', ['id' => $user->id]);
-                }
-            } else {
-                return back()->with('fail', 'Password not matches.');
-                return redirect()->back()->with(['input' => $request->all()]);
-            }
+    
+        if (Auth::attempt($validatedData)) {
+            $user = Auth::user();
+            $request->session()->put('id', $user->id);
+            return redirect()->route('home');
         } else {
-            return back()->with('fail', 'This username is not register');
-            return redirect()->back()->with(['input' => $request->all()]);
+            return back()->with('fail', 'Invalid username or password.')->withInput($validatedData);
         }
     }
-
-    // public function loginAdmin(Request $request)
-    // {
-    //     $request->validate([
-    //         'username' => 'required',
-    //         'password' => 'required',
-    //     ]);
-    //     $user = User::where('username', '=', $request->username)->first();
-
-    //     if ($user) {
-    //         if (Hash::check($request->password, $user->password)) {
-    //             $request->session()->put('id', $user->id);
-    //             if ($request->username === 'admin') {
-    //                 return redirect('admin');
-    //             } else {
-    //                 return redirect('home');
-    //             }
-    //         } else {
-    //             return back()->with('fail', 'Password not matches.')->withInput($request->except('password'));
-    //         }
-    //     } else {
-    //         return back()->with('fail', 'This username is not registered.')->withInput($request->except('password'));
-    //     }
-    // }
-
 
     public function logout()
     {

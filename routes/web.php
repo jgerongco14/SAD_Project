@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\DataController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DataController;
+use App\Http\Controllers\ViewPageController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +17,24 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-// Route::get('/folder/{file}', function ($file) {
-//     return response()->file(public_path("folder/{$file}"));
-// })->name('folder');
+//front-end routes
 
-// Route::get('/', function () {
-//     return view('auth.login');
-// });
+// landing page
+Route::get('/', function () {
+    return view('auth.login');
+});
+
+//admin page
+Route::get('/admin', function () {
+    return view('admin.admin');
+});
+
+
+//home page
+Route::get('/home',[LoginController::class,'home'])->name('home');
+
+//registration page
+Route::get('/registration',[ViewPageController::class,'registration'])->name('registration');
 
 
 
@@ -65,29 +78,11 @@ Route::get('/view_tourna', function () {
     return view('tournament.view_tourna');
 });
 
-Route::get('/my_profile', function () {
-    return view('profile.my_profile');
-});
 
-Route::get('/admin', function () {
-    return view('admin.admin');
-});
 
 Route::get('/view_club', function () {
     return view('clubs.view_club');
 });
-
-
-//front-end routes
-
-// going to registration page
-Route::get('/login',[LoginController::class,'login']);
-
-// going to registration page
-Route::get('/registration',[LoginController::class,'registration']);
-
-// going to the home/index page after successfully login
-Route::get('/home',[CustomAuthController::class,'home']);
 
 
 
@@ -100,5 +95,18 @@ Route::get('/check-connection', [YourController::class, 'checkDbConnection']);
 Route::post('/register-user', [LoginController::class,'registerUser'])->name('registerUser');
 Route::post('/login-user', [LoginController::class,'loginUser'])->name('login-user');
 
-//get data from database and paste it to text field in profile page
-// Route::get('/profile-data', DataController::class,'profileData')->name('profileData');
+//logout function
+Route::post('/logout', [LoginController::class,'logout'])->name('logout');
+Route::get('/login',[LoginController::class,'login'])->name('login');
+
+//display data from database to my_profile page
+Route::get('/my_profile',[DataController::class,'displayData'])->name('my_profile');
+
+//get image from database
+Route::get('/profile_pic', [DataController::class, 'showImage'])->name('image.show');
+
+//update profile pic
+Route::post('/profile_pic/{id}', [PostController::class, 'updatePhoto'])->name('update_profilepic');
+
+//update profile data
+Route::post('/my_profile/{id}', [PostController::class, 'updateProfile'])->name('update_profile');
