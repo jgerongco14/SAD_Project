@@ -110,3 +110,14 @@ Route::post('/profile_pic/{id}', [PostController::class, 'updatePhoto'])->name('
 
 //update profile data
 Route::post('/my_profile/{id}', [PostController::class, 'updateProfile'])->name('update_profile');
+
+//show all user data in a table 
+Route::get('/table', [getControllerData::class, 'showtable'])->name('showtable');
+
+//show table for player and player/coach
+Route::get('/player', [DataController::class, 'showPlayerTable'])->name('playertable');
+
+//show table for coach and player/coach
+Route::get('/coach', [DataController::class, 'showCoachTable'])->name('coachtable');
+
+

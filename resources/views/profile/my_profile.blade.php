@@ -241,19 +241,19 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="name">Facebook:</label>
-                                        <input type="text" class="form-control" name="facebook" id="facebook" value="{{$user->facebook}}" readonly>
+                                        <input type="text" class="form-control" name="facebookLink" id="facebookLink" value="{{$user->facebookLink}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="name">Instagram:</label>
-                                        <input type="text" class="form-control" name="instagram" id="instagram" value="{{$user->instagram}}" readonly>
+                                        <input type="text" class="form-control" name="instagramLink" id="instagramLink" value="{{$user->instagramLink}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="name">Twitter:</label>
-                                        <input type="text" class="form-control" name="twitter" id="twitter" value="{{$user->twitter}}" readonly>
+                                        <input type="text" class="form-control" name="twitterLink" id="twitterLink" value="{{$user->twitterLink}}" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -363,9 +363,9 @@
             document.getElementById('email').readOnly = false;
             document.getElementById('telNum').readOnly = false;
             document.getElementById('phoneNum').readOnly = false;
-            document.getElementById('facebook').readOnly = false;
-            document.getElementById('instagram').readOnly = false;
-            document.getElementById('twitter').readOnly = false;
+            document.getElementById('facebookLink').readOnly = false;
+            document.getElementById('instagramLink').readOnly = false;
+            document.getElementById('twitterLink').readOnly = false;
 
 
 
@@ -399,9 +399,9 @@
             document.getElementById('email').readOnly = true;
             document.getElementById('telNum').readOnly = true;
             document.getElementById('phoneNum').readOnly = true;
-            document.getElementById('facebook').readOnly = true;
-            document.getElementById('instagram').readOnly = true;
-            document.getElementById('twitter').readOnly = true;
+            document.getElementById('facebookLink').readOnly = true;
+            document.getElementById('instagramLink').readOnly = true;
+            document.getElementById('twitterLink').readOnly = true;
 
             document.querySelector('.form-select').disabled = true;
             document.querySelectorAll('.form-check-input').forEach(function(element) {

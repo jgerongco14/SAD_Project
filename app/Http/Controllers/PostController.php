@@ -10,31 +10,31 @@ class PostController extends Controller
     public function updateProfile(Request $request, $id)
     {
         $this->validate($request, [
-            'firstName' => 'required',
-            'middleInitial' => 'required',
-            'lastname' => 'required',
-            'suffix' => 'required',
-            'alias' => 'required',
-            'sex' => 'required',
-            'role' => 'required',
-            'address' => 'required',
-            'province' => 'required',
-            'city' => 'required',
-            'country' => 'required',
-            'nationality' => 'required',
-            'birthdate' => 'required',
-            'mobileNumber' => 'required',
-            'telephoneNumber' => 'required',
-            'facebookLink' => 'required',
-            'instagramLink' => 'required',
-            'twitterLink' => 'required',
-            'email' => 'required',
+            'firstName' => 'nullable',
+            'middleInitial' => 'nullable',
+            'lastName' => 'nullable',
+            'suffix' => 'nullable',
+            'alias' => 'nullable',
+            'sex' => 'nullable',
+            'role' => 'nullable',
+            'address' => 'nullable',
+            'province' => 'nullable',
+            'city' => 'nullable',
+            'country' => 'nullable',
+            'nationality' => 'nullable',
+            'birthdate' => 'nullable',
+            'mobileNumber' => 'nullable',
+            'telephoneNumber' => 'nullable',
+            'facebookLink' => 'nullable',
+            'instagramLink' => 'nullable',
+            'twitterLink' => 'nullable',
+            'email' => 'nullable',
         ]);
 
         $user = User::find($id);
         $user->firstName = $request->input('firstName');
         $user->middleInitial = $request->input('middleInitial');
-        $user->lastname = $request->input('lastname');
+        $user->lastName = $request->input('lastName');
         $user->suffix = $request->input('suffix');
         $user->alias = $request->input('alias');
         $user->sex = $request->input('sex');

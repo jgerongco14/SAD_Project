@@ -19,12 +19,12 @@
                     <a class="nav-link active" href="/about">About Pickleball</a>
                 </li>
             </ul>
-            <div class="col-2">
+            <div class="col-4">
                 <ul class="navbar-nav">
                     <li class="nav-item"><img src="{{ (Auth::user()->photo) ? route('image.show', ['id' => Auth::user()->id]) : asset('image/pro_icon.png') }}" class="rounded-circle" data-bs-toggle="dropdown" aria-expanded="false" class="img-drop" style="height: 40px; width: 50px;"></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white,">
-                        '{{$user->alias}}'
+                        {{$user->firstName}} '{{$user->alias}}' {{$user->lastName}}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ route('my_profile') }}"><img src="/image/pro_icon.png" style="height: 30px; width: 35px;">My Profile</a></li>
