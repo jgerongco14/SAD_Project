@@ -16,7 +16,7 @@ class DataController extends Controller
     {
 
         // Fetch the data based on the ID
-        $user = Auth::user();
+        $user = User::find(Auth::user()->id);
 
         //specific for selectors
         $sex = $user->sex;
@@ -28,7 +28,7 @@ class DataController extends Controller
 
     public function showImage()
     {
-        $user = Auth::user(); // Assuming you have an "Image" model and a "images" table in your database
+        $user = User::find(Auth::user()->id); // Assuming you have an "Image" model and a "images" table in your database
 
         if ($user) {
             $path = storage_path('app/' . $user->photo); // Assuming you have stored the image file in the storage/app/ directory

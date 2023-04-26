@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-    public function updateProfile(Request $request, $id)
+    public function updateProfile(Request $request)
     {
         $this->validate($request, [
             'firstName' => 'nullable',
@@ -31,7 +32,7 @@ class PostController extends Controller
             'email' => 'nullable',
         ]);
 
-        $user = User::find($id);
+        $user = User::find(Auth::user()->id);
         $user->firstName = $request->input('firstName');
         $user->middleInitial = $request->input('middleInitial');
         $user->lastName = $request->input('lastName');
@@ -62,7 +63,7 @@ class PostController extends Controller
         }
     }
 
-    public function updatePhoto(Request $request, $id)
+    public function updatePhoto(Request $request)
     {
         // Validate the form data, including the file
         $request->validate([
@@ -70,7 +71,7 @@ class PostController extends Controller
         ]);
 
 
-        $user = User::find($id);
+        $user =  User::find(Auth::user()->id);
         $path = $request->file('photo')->store('public/image');
         $user->photo = $path;
         $result = $user->save();

@@ -68,13 +68,13 @@
                             <p class="text-center">SEND MESSAGE</p>
                             <div class="row text-center">
                                 <div class="col">
-                                    <a href="{{ $user['instagramLink'] }}" type="btn"><img src="/image/insta.png" class="img-bot" style="height: 50px; width: 60px;"></a>
+                                    <a href="{{ $user['instagramLink'] }}" type="btn" target="_blank"><img src="/image/insta.png" class="img-bot" style="height: 50px; width: 60px;"></a>
                                 </div>
                                 <div class="col">
-                                    <a href="{{ $user['facebookLink'] }}" type="btn"><img src="/image/facebook.png" class="img-bot" style="height: 50px; width: 60px;"></a>
+                                    <a href="{{ $user['facebookLink'] }}" type="btn" target="_blank"><img src="/image/facebook.png" class="img-bot" style="height: 50px; width: 60px;"></a>
                                 </div>
                                 <div class="col">
-                                    <a href="{{ $user['twitterLink'] }}" type="btn"><img src="/image/twitter.png" class="img-bot" style="height: 50px; width: 60px;"></a>
+                                    <a href="{{ $user['twitterLink'] }}" type="btn" target="_blank"><img src="/image/twitter.png" class="img-bot" style="height: 50px; width: 60px;"></a>
                                 </div>
                             </div>
                         </td>

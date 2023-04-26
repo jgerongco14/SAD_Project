@@ -24,6 +24,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
 //admin page
 Route::get('/admin', function () {
     return view('admin.admin');
@@ -31,10 +32,10 @@ Route::get('/admin', function () {
 
 
 //home page
-Route::get('/home',[LoginController::class,'home'])->name('home');
+Route::get('/home', [LoginController::class, 'home'])->name('home');
 
 //registration page
-Route::get('/registration',[ViewPageController::class,'registration'])->name('registration');
+Route::get('/registration', [ViewPageController::class, 'registration'])->name('registration');
 
 
 
@@ -92,24 +93,24 @@ Route::get('/view_club', function () {
 Route::get('/check-connection', [YourController::class, 'checkDbConnection']);
 
 // login and register controller
-Route::post('/register-user', [LoginController::class,'registerUser'])->name('registerUser');
-Route::post('/login-user', [LoginController::class,'loginUser'])->name('login-user');
+Route::post('/register-user', [LoginController::class, 'registerUser'])->name('registerUser');
+Route::post('/login-user', [LoginController::class, 'loginUser'])->name('login-user');
 
 //logout function
-Route::post('/logout', [LoginController::class,'logout'])->name('logout');
-Route::get('/login',[LoginController::class,'login'])->name('login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 
 //display data from database to my_profile page
-Route::get('/my_profile',[DataController::class,'displayData'])->name('my_profile');
+Route::get('/my_profile', [DataController::class, 'displayData'])->name('my_profile');
 
 //get image from database
 Route::get('/profile_pic', [DataController::class, 'showImage'])->name('image.show');
 
 //update profile pic
-Route::post('/profile_pic/{id}', [PostController::class, 'updatePhoto'])->name('update_profilepic');
+Route::post('/profile_pic', [PostController::class, 'updatePhoto'])->name('update_profilepic');
 
 //update profile data
-Route::post('/my_profile/{id}', [PostController::class, 'updateProfile'])->name('update_profile');
+Route::post('/my_profile', [PostController::class, 'updateProfile'])->name('update_profile');
 
 //show all user data in a table 
 Route::get('/table', [getControllerData::class, 'showtable'])->name('showtable');
@@ -119,5 +120,3 @@ Route::get('/player', [DataController::class, 'showPlayerTable'])->name('playert
 
 //show table for coach and player/coach
 Route::get('/coach', [DataController::class, 'showCoachTable'])->name('coachtable');
-
-

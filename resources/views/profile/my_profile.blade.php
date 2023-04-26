@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Name of the User</title>
+    <title>{{$user->firstName}} '{{$user->alias}}' {{$user->lastName}} {{$user->suffix}}</title>
     <link rel="stylesheet" href="{{ asset('css/cp.css') }}">
     @extends('extentions.bootstrap_links')
     @section('bootstrap_links')
@@ -73,7 +73,7 @@
                     </div>
                     <div class="col d-flex justify-content-center">
                         <div class="form-group wrapper d-flex justify-content-center">
-                            <img src="{{ (Auth::user()->photo) ? route('image.show', ['id' => Auth::user()->id]) : asset('image/pro_icon.png') }}" alt="avatar" class="rounded-circle img-fluid photo" name="photo" id="photo" data-bs-toggle="modal" data-bs-target="#profilePictureModal">
+                            <img src="{{ (Auth::user()->photo) ? route('image.show') : asset('image/pro_icon.png') }}" alt="avatar" class="rounded-circle img-fluid photo" name="photo" id="photo" data-bs-toggle="modal" data-bs-target="#profilePictureModal">
                         </div>
                     </div>
                     <div class="col text-center">
@@ -82,7 +82,7 @@
                         <h5>ID No: {{ $user->id}}</h5>
                         @endif
                     </div>
-                    <form action="{{ route('update_profile', ['id' => Auth::user()->id]) }}" method="POST">
+                    <form action="{{ route('update_profile')}}" method="POST">
                         @csrf
                         @if (Session::has('success'))
                         <script>
@@ -226,13 +226,13 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="name">Telephone Number:</label>
-                                        <input type="text" class="form-control" name="telNum" id="telNum" value="{{$user->telNum}}" readonly>
+                                        <input type="text" class="form-control" name="telephoneNumber" id="telephoneNumber" value="{{$user->telephoneNumber}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="name">Phone Number:</label>
-                                        <input type="text" class="form-control" name="phoneNum" id="phoneNum" value="{{$user->phoneNum}}" readonly>
+                                        <input type="text" class="form-control" name="mobileNumber" id="mobileNumber" value="{{$user->mobileNumber}}" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -321,7 +321,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('update_profilepic', ['id' => Auth::user()->id]) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('update_profilepic')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @if (Session::has('success'))
                         <div class="alert alert-success">{{Session::get('success')}}</div>
@@ -361,8 +361,8 @@
             document.getElementById('province').readOnly = false;
             document.getElementById('city').readOnly = false;
             document.getElementById('email').readOnly = false;
-            document.getElementById('telNum').readOnly = false;
-            document.getElementById('phoneNum').readOnly = false;
+            document.getElementById('telephoneNumber').readOnly = false;
+            document.getElementById('mobileNumber').readOnly = false;
             document.getElementById('facebookLink').readOnly = false;
             document.getElementById('instagramLink').readOnly = false;
             document.getElementById('twitterLink').readOnly = false;
@@ -397,8 +397,8 @@
             document.getElementById('province').readOnly = true;
             document.getElementById('city').readOnly = true;
             document.getElementById('email').readOnly = true;
-            document.getElementById('telNum').readOnly = true;
-            document.getElementById('phoneNum').readOnly = true;
+            document.getElementById('telephoneNumber').readOnly = true;
+            document.getElementById('mobileNumber').readOnly = true;
             document.getElementById('facebookLink').readOnly = true;
             document.getElementById('instagramLink').readOnly = true;
             document.getElementById('twitterLink').readOnly = true;
