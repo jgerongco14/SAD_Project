@@ -120,3 +120,7 @@ Route::get('/player', [DataController::class, 'showPlayerTable'])->name('playert
 
 //show table for coach and player/coach
 Route::get('/coach', [DataController::class, 'showCoachTable'])->name('coachtable');
+
+
+//create tournament insert data
+Route::post('/manage tournament', [PostController::class, 'create_tournament'])->name('create_tournament');

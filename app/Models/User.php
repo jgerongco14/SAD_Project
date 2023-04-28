@@ -13,4 +13,6 @@ class User extends AuthenticatableUser implements Authenticatable
     public $timestamps = false;
     use Notifiable;
 
+    protected $table = 'users';
+
 }
