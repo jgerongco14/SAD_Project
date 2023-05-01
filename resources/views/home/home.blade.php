@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    @extends('partials.navbar2')
+    @extends('partials.navbar')
     @section('content')
 
     <br><br>
@@ -22,7 +22,7 @@
             <div class="col-md-6">
                 <h1 style="color: white; font-size: 50;"> <span>Pickleball</span> </h1>
                 <p style="color: white;">Davao Dinkers Club | Pickleball Partners<br></p>
-                <a class="btn btn-warning" href="/tournament" role="button">Featured Tournament</a>
+                <a class="btn btn-warning" href="{{ route('tournamentPage') }}" role="button">Featured Tournament</a>
             </div>
             <div class="col-md-6">
                 <div class="card">

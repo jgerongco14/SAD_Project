@@ -25,7 +25,7 @@
                     <h5 class="text-start">Please fill out all of the required fields.</h5>
                 </div>
 
-                <form action="{{route('create_tournament')}}" method="POST">
+                <form action="{{route('create_tournamentForm')}}" method="POST">
                     @csrf
                     @if (Session::has('success'))
                     <script>
@@ -59,21 +59,30 @@
                     </div>
                     <div class="row my-2">
                         <div class="col">
-                            <div class="form-group">
-                                <label for="name">Date of Actual Tournament</label>
-                                <input type="text" class="form-control" name="date_of_the_tournament" id="date_of_the_tournament" required>
+                            <label for="address">Date of the Tournament</label>
+                            <div class="input-group form-group date">
+                                <span class="input-group-text">
+                                    <i class="bi bi-calendar"></i>
+                                </span>
+                                <input type="text" class="form-control" name="date_of_the_tournament" id="date_of_the_tournament" data-provide="datepicker">
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group">
-                                <label for="name">Starting Date of Registration</label>
-                                <input type="text" class="form-control" name="start_date_of_registration" id="start_date_of_registration" required>
+                            <label for="address">Start date of Registration</label>
+                            <div class="input-group form-group date">
+                                <span class="input-group-text">
+                                    <i class="bi bi-calendar"></i>
+                                </span>
+                                <input type="text" class="form-control" name="start_date_of_registration" id="start_date_of_registration" data-provide="datepicker">
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group">
-                                <label for="name">End Date of Registration</label>
-                                <input type="text" class="form-control" name="end_date_of_registration" id="end_date_of_registration" required>
+                            <label for="address">End date of Registration</label>
+                            <div class="input-group form-group date">
+                                <span class="input-group-text">
+                                    <i class="bi bi-calendar"></i>
+                                </span>
+                                <input type="text" class="form-control" name="end_date_of_registration" id="end_date_of_registration" data-provide="datepicker">
                             </div>
                         </div>
                     </div>
@@ -132,7 +141,7 @@
                     <div class="col my-2">
                         <div class="form-group">
                             <label for="name">Name of Organizer</label>
-                            <input type="text" class="form-control" name="name_of_organizer" id="name_of_organizer"  required>
+                            <input type="text" class="form-control" name="name_of_organizer" id="name_of_organizer" required>
                         </div>
                     </div>
                     <div class="row my-2">
@@ -142,7 +151,7 @@
                         </div>
                         <div class="col">
                             <label for="profile_picture">Email</label>
-                            <input type="text" class="form-control" name="email" id="email"  required>
+                            <input type="text" class="form-control" name="email" id="email" required>
                         </div>
                     </div>
                     <div class="col my-2">
@@ -155,7 +164,7 @@
                     <div class="col my-2">
                         <div class="form-group">
                             <label for="profile_picture">Poster</label>
-                            <input type="file" name="poster" id="poster" class="form-control" required> 
+                            <input type="file" name="poster" id="poster" class="form-control" required>
                         </div>
                     </div>
                     <div class="col my-2">

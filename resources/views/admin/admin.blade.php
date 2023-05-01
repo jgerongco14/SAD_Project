@@ -31,10 +31,10 @@
                     <thead class="bg-dark sticky-top" style="color:white;">
                         <tr>
                             <th>
-                                No.
+                                Tournament ID
                             </th>
                             <th>
-                                Logo
+                                Tournament Logo
                             </th>
                             <th>
                                 Tournament Title
@@ -43,7 +43,16 @@
                                 Description
                             </th>
                             <th>
-                                Payment Status
+                                Organizer
+                            </th>
+                            <th>
+                                Dates
+                            </th>
+                            <th>
+                                Address
+                            </th>
+                            <th>
+                                Proof of payment
                             </th>
                             <th>
                                 Status
@@ -51,37 +60,54 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($tournament as $data)
                         <tr>
-                            <td class="col-1">
-                                1
+                            <td>{{ $data['id'] }}</td>
+                            <td>
+                                @if ($data->tournament_logo)
+                                <img src="{{ route('showtournamentImages') }}" alt="avatar" name="tournament_logo" id="tournament_logo" height="100" width="100" class="pic">
+                                @endif
                             </td>
-                            <td class="col-1">
-                                <img src="/image/pro_icon.png" class="img-fluid">
+                            <td>{{ $data['tournament_title'] }}</td>
+                            <td>{{ $data['tournament_description']}}</td>
+                            <td>{{ $data['name_of_organizer'] }}</td>
+                            <td>
+                                Actual Date of Tournament: {{ $data['date_of_the_tournament'] }}
+                                Start Date of Registration: {{ $data['start_date_of_registration'] }}
+                                End Date of Registration: {{ $data['end_date_of_registration'] }}
                             </td>
-                            <td class="col-2">
-                                Davao Pickleball Tournament 2022
+                            <td>{{ $data['address']}} {{ $data['city']}} {{ $data['province']}}</td>
+                            <td>
+                                @if ($data->proof_of_payment)
+                                <img src="{{ route('showtournamentImages') }}" alt="avatar" name="proof_of_payment" id="proof_of_payment" height="100" width="100" class="pic">
+                                @endif
                             </td>
-                            <td class="col-5">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                when an unknown printer took a galley of type and scrambled it to make a type
-                                specimen book. It has survived not only five centuries, but also the leap into
-                                electronic typesetting, remaining essentially unchanged. It was popularised in
-                                the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                                and more recently with desktop publishing software like Aldus PageMaker including
-                                versions of Lorem Ipsum.
-                            </td>
-                            <td class="col-2">
-                                Not Yet Verified
-                            </td>
-                            <td class="col-1">
-                                <div class="row d-flex justify-content-evenly">
-                                    <button class="btn btn-primary w-75 my-2 bg-success" type="button">Accept</button>
-                                    <button class="btn btn-primary w-75 my-2 bg-danger" type="button">Decline</button>
-                                </div>
+                            <td>
+                                <form action="{{ route('tournament_approve', ['id' => $data['id']]) }}" method="post">
+                                    @csrf
+                                    @if (Session::has('success'))
+                                    <script>
+                                        window.onload = function() {
+                                            alert("{{ Session::get('success') }}");
+                                        };
+                                    </script>
+                                    @endif
+                                    @if (Session::has('fail'))
+                                    <script>
+                                        window.onload = function() {
+                                            alert("{{ Session::get('fail') }}");
+                                        };
+                                    </script>
+                                    @endif
+                                    @method('put')
+                                    <button type="submit" class="btn btn-primary mt-2" onclick="return confirm('Are you sure you want to Approve this Tournament?')">Approved</button>
+                                </form>
+
+                                <!-- 
+                            <button type="submit" class="btn btn-danger">Decline</button> -->
                             </td>
                         </tr>
-                       
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -94,7 +120,7 @@
                                 No.
                             </th>
                             <th>
-                               Logo
+                                Logo
                             </th>
                             <th>
                                 Club Name

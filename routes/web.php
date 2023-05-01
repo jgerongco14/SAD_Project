@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\ViewPageController;
 use App\Http\Controllers\PostController;
+use Illuminate\Auth\Events\Login;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,18 @@ use App\Http\Controllers\PostController;
 
 //front-end routes
 
-// landing page
+//landing page
+
 Route::get('/', function () {
     return view('auth.login');
+});
+
+Route::get('/aboutPickleBall', function () {
+    return view('about.about');
+});
+
+Route::get('/gallery', function () {
+    return view('about.gallery');
 });
 
 
@@ -31,49 +41,43 @@ Route::get('/admin', function () {
 });
 
 
+//login landing page
+Route::get('/home', [LoginController::class, 'login'])->name('login');
+
+
 //home page
 Route::get('/home', [LoginController::class, 'home'])->name('home');
 
 //registration page
 Route::get('/registration', [ViewPageController::class, 'registration'])->name('registration');
 
+//about pickleball in landing page
+Route::get('/aboutpickelball', [ViewPageController::class, 'aboutPickleBallLandingPage'])->name('aboutPickleBallLandingPage');
+
+//about gallery in landing page
+Route::get('/gallery', [ViewPageController::class, 'galleryLandingPage'])->name('galleryLandingPage');
+
+//manage tournament page
+Route::get('/manageTournament', [ViewPageController::class, 'create_tournamentPage'])->name('create_tournamentPage');
+
+//tournament page
+Route::get('/tournament', [ViewPageController::class, 'tournamentPage'])->name('tournamentPage');
+
+//about pickleball page
+Route::get('/aboutpickelball', [ViewPageController::class, 'aboutPickleBallPage'])->name('aboutPickleBallPage');
+
+//about gallery page
+Route::get('/gallery', [ViewPageController::class, 'galleryPage'])->name('galleryPage');
 
 
-Route::get('/gallery', function () {
-    return view('profile.gallery');
-});
+//clubs page
+Route::get('/clubs', [ViewPageController::class, 'clubsPage'])->name('clubsPage');
 
-Route::get('/tournament', function () {
-    return view('tournament.tournament');
-});
-
-Route::get('/tourna_content', function () {
-    return view('tournament.tourna_content');
-});
-
-Route::get('/clubs', function () {
-    return view('clubs.clubs');
-});
-
-Route::get('/about', function () {
-    return view('about.about');
-});
-
-Route::get('/coach', function () {
-    return view('list.coach');
-});
-
-Route::get('/player', function () {
-    return view('list.player');
-});
 
 Route::get('/events', function () {
     return view('events.events');
 });
 
-Route::get('/manage_tourna', function () {
-    return view('tournament.manage_tourna');
-});
 
 Route::get('/view_tourna', function () {
     return view('tournament.view_tourna');
@@ -123,4 +127,18 @@ Route::get('/coach', [DataController::class, 'showCoachTable'])->name('coachtabl
 
 
 //create tournament insert data
-Route::post('/manage tournament', [PostController::class, 'create_tournament'])->name('create_tournament');
+Route::post('/manage tournament', [PostController::class, 'create_tournamentForm'])->name('create_tournamentForm');
+
+// display tournament data that needs to approved by admin
+Route::get('/tournamentList', [DataController::class, 'displayTourna'])->name('displayTourna');
+
+// display data to tournament page
+Route::get('/admin', [DataController::class, 'unapprovedTournament'])->name('unapprovedTournament');
+
+
+//if it click approve button it will update the status in the database
+Route::put('/admin/{id}', [PostController::class, 'approvedTournamentByAdmin'])->name('tournament_approve');
+
+
+//get image from database show proof of payment and tournament logo
+Route::get('/admin_pic', [DataController::class, 'showtournamentImages'])->name('showtournamentImages');

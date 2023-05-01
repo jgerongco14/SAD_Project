@@ -84,7 +84,7 @@ class PostController extends Controller
         }
     }
 
-    public function create_tournament(Request $request)
+    public function create_tournamentForm(Request $request)
     {
         $this->validate($request, [
             'tournament_title' => 'required',
@@ -140,6 +140,19 @@ class PostController extends Controller
             return redirect()->back()->with('success', 'Tournament Request is now sent! Please wait for the approval of Admin');
         } else {
             return redirect()->back()->with('fail', 'Please Check It Again!');
+        }
+    }
+
+    public function approvedTournamentByAdmin($id)
+    {
+        $tournament = Tournament::findOrFail($id);
+        $tournament->status = 'approve';
+        $result = $tournament->save();
+
+        if ($result) {
+            return redirect()->back()->with('success', 'The tournament has been approved!');
+        } else {
+            return redirect()->back()->with('fail', 'Something went wrong');
         }
     }
 }

@@ -19,7 +19,7 @@
             <div class="col-md-6">
                 <h1 style="color: white; font-size: 50;"> <span>Tournament</span> </h1>
                 <p style="color: white;">Davao Dinkers Club | Pickleball Partners<br></p>
-                <a href="/tourna_content"><button class="btn btn-warning" type="button">View Tournament</button></a>
+                <a href="{{ route('displayTourna') }}"><button class="btn btn-warning" type="button">View Tournament</button></a>
             </div>
             <div class="col-md-6">
                 <div class="card">

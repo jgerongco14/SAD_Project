@@ -10,14 +10,14 @@
 </head>
 
 <body>
-    @extends('partials.navbar2')
+    @extends('partials.navbar')
     @section('content')
     <br><br>
     <div class="container mt-5">
         <div class="col">
             <div class="row d-flex text-center">
                 <div class="col">
-                    <a href="/manage_tourna"><button class="btn btn-danger w-75" type="button">Create Tournament</button></a>
+                    <a href="{{ route('create_tournamentPage') }}"><button class="btn btn-danger w-75" type="button">Create Tournament</button></a>
                 </div>
                 <div class="col">
                     <button type="button" class="btn btn-warning w-75">Next Week</button>
@@ -34,9 +34,10 @@
 
     <div class="container mt-3">
         <div class="col overflow-auto mt-3 " style="height: 70vh;">
+            @foreach($tournament as $data)
             <div class="card my-3">
                 <div class="card-header">
-                    <h4 class="fw-bold text-decoration-underline text-center mt-2">Legacy Oktoberfest</h4>
+                    <h4 class="fw-bold text-decoration-underline text-center mt-2">{{ $data->tournament_title }}</h4>
                 </div>
                 <div class="card-body ">
                     <div class="row">
@@ -51,13 +52,20 @@
                             </div>
                         </div>
                         <div class="col-8">
-                            <h3 class="fw-bold">ID: 00001</h3>
-                            <p>Date: 10/07/22 - 10/09/22</p>
-                            <p>Address: Bankal Davao City Davao Del Sur</p>
-                            <p>Category: Men's Singles</p>
-                            <p>Age: 40-60</p>
-                            <p> Description: Legacy Oktoberfest Open presented by Gamma Pickleball hosted by Tyson Apostol.
-                                Rockin’ Protein Pickleball Center Bank Park powered by Legacy Sports Philippines, Mesa.</p>
+                            <h3 class="fw-bold">{{ $data->id }}</h3>
+                            <p>
+                                Actual Date of Tournament: {{ $data->date_of_the_tournament }}
+                                Start Date of Registration: {{ $data->start_date_of_registration }}
+                                End Date of Registration: {{ $data->end_date_of_registration }}
+                            </p>
+                            <p>Address: {{ $data->address }} {{ $data->city }} {{ $data->province }}</p>
+                            <p>Category: {{ $data->category }}</p>
+                            <p>Age: {{ $data->age_range }}</p>
+                            <p> Description: 
+                                {{ $data->tournament_description }}
+                            </p>
+                            <p> Sponsored by: {{ $data->sponsor }}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -72,6 +80,7 @@
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 

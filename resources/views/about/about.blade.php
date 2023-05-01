@@ -15,8 +15,8 @@
     @extends('partials.navbar')
     @section('content')
     <br><br>
-    <div class="container-fluid">
-        
+    <div class="container-fluid mt-4">
+
         <div class="row">
             <div class="col">
                 <h4 class="text-center m-4">About Pickleball</h4>
@@ -39,9 +39,7 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="container">
         <div class="row d-flex">
             <div class="col">
                 <h1 class="mt-2 fw-bold">What is Pickleball?</h1><br>
