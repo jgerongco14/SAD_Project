@@ -53,10 +53,10 @@
                 <tbody>
                     @foreach ($users as $user)
                     <tr>
-                    @if ($user->photo)
-                        <td  class="align-middle text-center"><img src="{{ route('image.show', ['id' => $user->id]) }}" style="height: 100px; width: 100px;" class="rounded-circle img-bot"></td>
+                        @if ($user->photo)
+                        <td class="align-middle text-center"><img src="{{ route('image.show', ['id' => $user->id]) }}" style="height: 100px; width: 100px;" class="rounded-circle img-bot"></td>
                         @else
-                        <td  class="align-middle text-center"><img src="{{ asset('image/pro_icon.png') }}" style="height: 100px; width: 100px;" class="rounded-circle img-bot"></td>
+                        <td class="align-middle text-center"><img src="{{ asset('image/pro_icon.png') }}" style="height: 100px; width: 100px;" class="rounded-circle img-bot"></td>
                         @endif
                         <td class="align-middle">
                             <p class=" fw-bold">{{ $user['firstName'] }} '{{ $user['alias'] }}' {{ $user['middleInitial'] }} {{ $user['lastName'] }}</p>
@@ -66,15 +66,27 @@
                         </td>
                         <td class="align-middle">
                             <p class="text-center">SEND MESSAGE</p>
-                            <div class="row text-center">
-                                <div class="col">
-                                    <a href="{{ $user['instagramLink'] }}" type="btn"><img src="/image/insta.png" class="img-bot" style="height: 50px; width: 60px;"></a>
+                            <div class="row text-center d-flex justify-content-center">
+                                <div class="col-2">
+                                    @if($user['instagramLink'])
+                                    <a href="{{ $user['instagramLink'] }}" target="_blank"><img src="/image/insta.png" class="img-bot" style="height: 50px; width: 60px;"></a>
+                                    @else
+                                    <img src="/image/insta.png" class="img-bot" style="height: 50px; width: 60px;">
+                                    @endif
                                 </div>
-                                <div class="col">
-                                    <a href="{{ $user['facebookLink'] }}" type="btn"><img src="/image/facebook.png" class="img-bot" style="height: 50px; width: 60px;"></a>
+                                <div class="col-2">
+                                    @if($user['facebookLink'])
+                                    <a href="{{ $user['facebookLink'] }}" type="btn" target="_blank"><img src="/image/facebook.png" class="img-bot" style="height: 50px; width: 60px;"></a>
+                                    @else
+                                    <img src="/image/facebook.png" class="img-bot" style="height: 50px; width: 60px;">
+                                    @endif
                                 </div>
-                                <div class="col">
-                                    <a href="{{ $user['twitterLink'] }}" type="btn"><img src="/image/twitter.png" class="img-bot" style="height: 50px; width: 60px;"></a>
+                                <div class="col-2">
+                                    @if($user['twitterLink'])
+                                    <a href="{{ $user['twitterLink'] }}" type="btn" target="_blank"><img src="/image/twitter.png" class="img-bot" style="height: 50px; width: 60px;"></a>
+                                    @else
+                                    <img src="/image/twitter.png" class="img-bot" style="height: 50px; width: 60px;">
+                                    @endif
                                 </div>
                             </div>
                         </td>
