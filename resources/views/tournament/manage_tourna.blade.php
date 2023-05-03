@@ -48,13 +48,19 @@
                     <div class="col my-2">
                         <div class="form-group">
                             <label for="name">Tournament Title:</label>
-                            <input type="text" class="form-control" name="tournament_title" id="tournament_title" required>
+                            <input type="text" class="form-control" name="tournament_title" id="tournament_title" value="{{old('tournament_title')}}" required>
+                            @error('tournament_title')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col my-2">
                         <div class="form-group">
                             <label for="profile_picture">Tournament Logo</label>
-                            <input type="file" name="tournament_logo" id="tournament_logo" class="form-control">
+                            <input type="file" name="tournament_logo" id="tournament_logo" class="form-control" >
+                            @error('tournament_logo')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row my-2">
@@ -64,7 +70,7 @@
                                 <span class="input-group-text">
                                     <i class="bi bi-calendar"></i>
                                 </span>
-                                <input type="text" class="form-control" name="date_of_the_tournament" id="date_of_the_tournament" data-provide="datepicker">
+                                <input type="text" class="form-control" name="date_of_the_tournament" id="date_of_the_tournament" data-provide="datepicker" value="{{old('date_of_the_tournament')}}" required>
                             </div>
                         </div>
                         <div class="col">
@@ -73,7 +79,7 @@
                                 <span class="input-group-text">
                                     <i class="bi bi-calendar"></i>
                                 </span>
-                                <input type="text" class="form-control" name="start_date_of_registration" id="start_date_of_registration" data-provide="datepicker">
+                                <input type="text" class="form-control" name="start_date_of_registration" id="start_date_of_registration" data-provide="datepicker" value="{{old('start_date_of_registration')}}" required>
                             </div>
                         </div>
                         <div class="col">
@@ -82,14 +88,14 @@
                                 <span class="input-group-text">
                                     <i class="bi bi-calendar"></i>
                                 </span>
-                                <input type="text" class="form-control" name="end_date_of_registration" id="end_date_of_registration" data-provide="datepicker">
+                                <input type="text" class="form-control" name="end_date_of_registration" id="end_date_of_registration" data-provide="datepicker" value="{{old('end_date_of_registration')}}" required>
                             </div>
                         </div>
                     </div>
                     <div class="row my-2">
                         <div class="col">
                             <label for="name">Tournament Category</label>
-                            <select class="form-select" name="category" aria-label="Default select example">
+                            <select class="form-select" name="category" aria-label="Default select example" value="{{old('category')}}" required> 
                                 <option selected>Category</option>
                                 <option value="Men's Singles">Men's Singles</option>
                                 <option value="Women's Singles">Women's Singles</option>
@@ -114,75 +120,111 @@
                     <div class="col my-2">
                         <div class="form-group">
                             <label for="name">Address</label>
-                            <input type="text" class="form-control" name="address" id="address" required>
+                            <input type="text" class="form-control" name="address" id="address" value="{{old('address')}}" required>
+                            @error('address')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row my-2">
                         <div class="col">
                             <div class="form-group">
                                 <label for="name">Province</label>
-                                <input type="text" class="form-control" name="province" id="province" required>
+                                <input type="text" class="form-control" name="province" id="province" value="{{old('province')}}" required>
+                                @error('province')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="name">City</label>
-                                <input type="text" class="form-control" name="city" id="city" required>
+                                <input type="text" class="form-control" name="city" id="city" value="{{old('city')}}" required>
+                                @error('city')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
                     <div class="col my-2">
                         <div class="form-group">
                             <label for="name">Tournament Description</label>
-                            <textarea class="form-control" rows="3" name="tournament_description" id="tournament_description" required></textarea>
+                            <textarea class="form-control" rows="3" name="tournament_description" id="tournament_description" value="{{old('tournament_description')}}" required></textarea>
+                            @error('tournament_description')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <h5 class="fw-bold my-4">II. Tournament Organizer Details</h5>
                     <div class="col my-2">
                         <div class="form-group">
                             <label for="name">Name of Organizer</label>
-                            <input type="text" class="form-control" name="name_of_organizer" id="name_of_organizer" required>
+                            <input type="text" class="form-control" name="name_of_organizer" id="name_of_organizer"  value="{{old('name_of_organizer')}}" required>
+                            @error('name_of_organizer')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row my-2">
                         <div class="col">
                             <label for="profile_picture">Contact Number</label>
-                            <input type="text" class="form-control" name="contactNumber" id="contactNumber" required>
+                            <input type="text" class="form-control" name="contactNumber" id="contactNumber"  value="{{old('contactNumber')}}" required>
+                            @error('contactNumber')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
                             <label for="profile_picture">Email</label>
-                            <input type="text" class="form-control" name="email" id="email" required>
+                            <input type="text" class="form-control" name="email" id="email"  value="{{old('email')}}" required>
+                            @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col my-2">
                         <div class="form-group">
                             <label for="name">Sponsor</label>
-                            <input type="text" class="form-control" name="sponsor" id="sponsor" required>
+                            <input type="text" class="form-control" name="sponsor" id="sponsor" value="{{old('sponsor')}}" required>
+                            @error('sponsor')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <h5 class="fw-bold my-4">III. Tournament Description</h5>
                     <div class="col my-2">
                         <div class="form-group">
                             <label for="profile_picture">Poster</label>
-                            <input type="file" name="poster" id="poster" class="form-control" required>
+                            <input type="file" name="poster" id="poster" class="form-control" value="{{old('email')}}" required>
+                            @error('poster')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col my-2">
                         <div class="form-group">
                             <label for="profile_picture">Poster Title</label>
-                            <input type="text" class="form-control" name="poster_title" id="poster_title" required>
+                            <input type="text" class="form-control" name="poster_title" id="poster_title" value="{{old('poster_title')}}" required>
+                            @error('poster_title')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col my-2">
                         <div class="form-group">
                             <label for="name">Poster Description</label>
-                            <textarea class="form-control" rows="3" name="poster_description" id="poster_description" required></textarea>
+                            <textarea class="form-control" rows="3" name="poster_description" id="poster_description"  value="{{old('poster_description')}}"  required></textarea>
+                            @error('poster_description')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col my-2">
                         <div class="form-group">
                             <label for="profile_picture">Picture of your Gcash QRCode</label>
-                            <input type="file" name="admin_gcash" id="admin_gcash" class="form-control" required>
+                            <input type="file" name="admin_gcash" id="admin_gcash" class="form-control" value="{{old('admin_gcash')}}" required>
+                            @error('admin_gcash')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <h5 class="fw-bold my-4">IV. Payment</h5>
@@ -193,7 +235,10 @@
                                 <div class="col my-2 mx-2">
                                     <div class="form-group">
                                         <label for="profile_picture">Proof of Payment</label>
-                                        <input type="file" name="proof_of_payment" id="proof_of_payment" class="form-control" required>
+                                        <input type="file" name="proof_of_payment" id="proof_of_payment" class="form-control"  value="{{old('proof_of_payment')}}" required>
+                                        @error('proof_of_payment')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>

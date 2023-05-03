@@ -99,7 +99,7 @@ class PostController extends Controller
             'city' => 'required',
             'tournament_description' => 'required',
             'name_of_organizer' => 'required',
-            'contactNumber' => 'required',
+            'contactNumber' => 'required|numeric',
             'email' => 'required',
             'sponsor' => 'required',
             'poster' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -107,7 +107,14 @@ class PostController extends Controller
             'poster_description' => 'required',
             'admin_gcash' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'proof_of_payment' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
+            'tournament_logo.max' => 'The tournament logo must not be larger than 2 MB.',
+            'poster.max' => 'The tournament poster must not be larger than 2 MB.',
+            'admin_gcash.max' => 'The admin GCash QR code must not be larger than 2 MB.',
+            'proof_of_payment.max' => 'The proof of payment must not be larger than 2 MB.',
         ]);
+
+        
 
         $user = User::find(Auth::user()->id);
 
