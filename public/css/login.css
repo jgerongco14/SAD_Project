@@ -1,0 +1,14 @@
+.bgcon {
+    background-color: black;
+}
+
+.bg {
+    background-image: url("/image/loginpage.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 90vh;
+}
+
+.bgcard {
+    background-color: #222222;
+}

@@ -14,11 +14,12 @@ class UserList extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->binary('photo')->nullable();
+            $table->bigIncrements('id')->unique();
+            $table->string('photo')->nullable();
             $table->string('firstName')->nullable();
+            $table->string('middleInitial')->nullable();
             $table->string('lastName')->nullable();
-            $table->string('middleName')->nullable();
+            $table->string('suffix')->nullable();
             $table->string('alias')->nullable();
             $table->string('sex')->nullable();
             $table->longText('address')->nullable();

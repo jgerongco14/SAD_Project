@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    @extends('partials.navbar2')
+    @extends('partials.navbar')
     @section('content')
 
     <div class="container my-5 ">
