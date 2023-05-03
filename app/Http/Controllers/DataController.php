@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tournament;
-use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +14,6 @@ class DataController extends Controller
     //naay need i change
     public function displayData()
     {
-
         // Fetch the data based on the ID
         $user = User::find(Auth::user()->id);
 
@@ -27,18 +25,20 @@ class DataController extends Controller
         return view('profile.my_profile', compact('user', 'sex', 'role'));
     }
 
+
     public function showImage()
     {
-        $user = User::find(Auth::user()->id); // Assuming you have an "Image" model and a "images" table in your database
+        $user = User::find(Auth::user()->id);
 
         if ($user) {
-            $path = storage_path('app/' . $user->photo); // Assuming you have stored the image file in the storage/app/ directory
+            $path = storage_path('app/' . $user->photo);
             return response()->file($path);
         } else {
             // Handle image not found
             return response()->view('errors.image_not_found');
         }
     }
+
 
     public function showtable()
     {
@@ -73,20 +73,5 @@ class DataController extends Controller
         $tournament = Tournament::whereNull('status')->get();
         return view('admin.admin', ['tournament' => $tournament]);
     }
-
     
-    public function showtournamentImages($id)
-    {
-        $tournament = Tournament::find($id); // Assuming you have an "Image" model and a "images" table in your database
-
-        if ($tournament) {
-            $path = storage_path('app/' . $tournament->tournament_logo); // Assuming you have stored the image file in the storage/app/ directory
-            $path = storage_path('app/' . $tournament->proof_of_payment);
-            return response()->file($path);
-        } else {
-            // Handle image not found
-            return response()->view('errors.image_not_found');
-        }
-    }
-
 }

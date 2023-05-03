@@ -53,7 +53,7 @@ class PostController extends Controller
         $user->instagramLink = $request->input('instagramLink');
         $user->twitterLink = $request->input('twitterLink');
         $user->email = $request->input('email');
-    
+
 
         $result = $user->save();
 
@@ -72,7 +72,7 @@ class PostController extends Controller
         ]);
 
 
-        $user =  User::find(Auth::user()->id);
+        $user = User::find(Auth::user()->id);
         $path = $request->file('photo')->store('public/image');
         $user->photo = $path;
         $result = $user->save();
@@ -88,7 +88,7 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'tournament_title' => 'required',
-            'tournament_logo' => 'required',
+            'tournament_logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'date_of_the_tournament' => 'required',
             'start_date_of_registration' => 'required',
             'end_date_of_registration' => 'required',
@@ -102,11 +102,11 @@ class PostController extends Controller
             'contactNumber' => 'required',
             'email' => 'required',
             'sponsor' => 'required',
-            'poster' => 'required',
+            'poster' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'poster_title' => 'required',
             'poster_description' => 'required',
-            'admin_gcash' => 'required',
-            'proof_of_payment' => 'required',
+            'admin_gcash' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'proof_of_payment' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $user = User::find(Auth::user()->id);
@@ -114,7 +114,7 @@ class PostController extends Controller
         $tournament = new Tournament();
         $tournament->user_id = $user->id;
         $tournament->tournament_title = $request->input('tournament_title');
-        $tournament->tournament_logo = $request->input('tournament_logo');
+        $tournament->tournament_logo = $request->file('tournament_logo')->store('image/tournament/logo', 'public');
         $tournament->date_of_the_tournament = $request->input('date_of_the_tournament');
         $tournament->start_date_of_registration = $request->input('start_date_of_registration');
         $tournament->end_date_of_registration = $request->input('end_date_of_registration');
@@ -128,11 +128,11 @@ class PostController extends Controller
         $tournament->contactNumber = $request->input('contactNumber');
         $tournament->email = $request->input('email');
         $tournament->sponsor = $request->input('sponsor');
-        $tournament->poster = $request->input('poster');
+        $tournament->poster = $request->file('poster')->store('image/tournament/poster', 'public');
         $tournament->poster_title = $request->input('poster_title');
         $tournament->poster_description = $request->input('poster_description');
-        $tournament->admin_gcash = $request->input('admin_gcash');
-        $tournament->proof_of_payment = $request->input('proof_of_payment');
+        $tournament->admin_gcash = $request->file('admin_gcash')->store('image/tournament/admin_gcash', 'public');
+        $tournament->proof_of_payment = $request->file('proof_of_payment')->store('image/tournament/proof_of_payment', 'public');
 
         $result = $tournament->save();
 

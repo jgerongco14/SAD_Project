@@ -10,7 +10,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
 </head>
-
 <body>
     @extends('partials.navbar')
     @section('content')
@@ -63,24 +62,44 @@
                         @foreach($tournament as $data)
                         <tr>
                             <td>{{ $data['id'] }}</td>
-                            <td>
-                                @if ($data->tournament_logo)
-                                <img src="{{ route('showtournamentImages') }}" alt="avatar" name="tournament_logo" id="tournament_logo" height="100" width="100" class="pic">
-                                @endif
+                            <td><img src="{{ asset('storage/' . $data->tournament_logo) }}" width="100px" height="100px" data-bs-toggle="modal" data-bs-target="#tournament_logo{{ $data->id }}">
+                                <div class="modal fade" id="tournament_logo{{ $data->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <img src="{{ asset('storage/' . $data->tournament_logo) }}" class="img-fluid" alt="Tournament logo">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                             <td>{{ $data['tournament_title'] }}</td>
                             <td>{{ $data['tournament_description']}}</td>
                             <td>{{ $data['name_of_organizer'] }}</td>
                             <td>
-                                Actual Date of Tournament: {{ $data['date_of_the_tournament'] }}
-                                Start Date of Registration: {{ $data['start_date_of_registration'] }}
-                                End Date of Registration: {{ $data['end_date_of_registration'] }}
+                                <div class="d-flex flex-column">
+                                    <div class="flex-grow-1 text-truncate">
+                                        Actual Date of Tournament: {{ $data['date_of_the_tournament'] }}
+                                    </div>
+                                    <div class="flex-grow-1 text-truncate">
+                                        Start Date of Registration: {{ $data['start_date_of_registration'] }}
+                                    </div>
+                                    <div class="flex-grow-1 text-truncate">
+                                        End Date of Registration: {{ $data['end_date_of_registration'] }}
+                                    </div>
+                                </div>
                             </td>
                             <td>{{ $data['address']}} {{ $data['city']}} {{ $data['province']}}</td>
-                            <td>
-                                @if ($data->proof_of_payment)
-                                <img src="{{ route('showtournamentImages') }}" alt="avatar" name="proof_of_payment" id="proof_of_payment" height="100" width="100" class="pic">
-                                @endif
+                            <td><img src="{{ asset('storage/' . $data->proof_of_payment) }}" width="100px" height="100px" data-bs-toggle="modal" data-bs-target="#proof_of_payment{{ $data->id }}">
+                                <div class="modal fade" id="proof_of_payment{{ $data->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <img src="{{ asset('storage/' . $data->proof_of_payment) }}" class="img-fluid" alt="Tournament logo">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                             <td>
                                 <form action="{{ route('tournament_approve', ['id' => $data['id']]) }}" method="post">
@@ -164,10 +183,9 @@
                     </tbody>
                 </table>
             </div>
-
-
         </div>
     </div>
+
     @endsection
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>

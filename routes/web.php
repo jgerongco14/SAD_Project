@@ -138,7 +138,3 @@ Route::get('/admin', [DataController::class, 'unapprovedTournament'])->name('una
 
 //if it click approve button it will update the status in the database
 Route::put('/admin/{id}', [PostController::class, 'approvedTournamentByAdmin'])->name('tournament_approve');
-
-
-//get image from database show proof of payment and tournament logo
-Route::get('/admin_pic', [DataController::class, 'showtournamentImages'])->name('showtournamentImages');

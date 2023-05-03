@@ -25,7 +25,7 @@
                     <h5 class="text-start">Please fill out all of the required fields.</h5>
                 </div>
 
-                <form action="{{route('create_tournamentForm')}}" method="POST">
+                <form action="{{route('create_tournamentForm')}}" enctype="multipart/form-data" method="POST">
                     @csrf
                     @if (Session::has('success'))
                     <script>
