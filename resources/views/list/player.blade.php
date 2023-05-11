@@ -17,6 +17,9 @@
     @section('content')
     <br><br><br>
     <div class="container">
+        <div class="col d-flex justify-content-end">
+            <a href="{{ route('home') }}"><button class="btn btn-secondary " type="button">Back</button></a>
+        </div>
         <h1 class="text-center fw-bolder mt-3">Player List</h1>
         <div class="row mt-3">
             <div class="col">

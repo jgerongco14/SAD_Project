@@ -6,90 +6,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tournaments</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    @extends('extentions.bootstrap_links')
+    @section('bootstrap_links')
+    @endsection
 </head>
 
 <body>
     @extends('partials.navbar')
     @section('content')
     <br><br>
-    <div class="container mt-5">
+    <div class="container mt-4">
         <div class="col">
             <div class="row d-flex text-center">
-                <div class="col">
-                    <a href="{{ route('create_tournamentPage') }}"><button class="btn btn-danger w-75" type="button">Create Tournament</button></a>
-                </div>
-                <div class="col">
-                    <button type="button" class="btn btn-warning w-75">Next Week</button>
-                </div>
-                <div class="col">
-                    <button type="button" class="btn btn-success w-75">Future</button>
-                </div>
-                <div class="col">
-                    <button type="button" class="btn btn-secondary w-75">Past</button>
+                <div class="col d-flex justify-content-end">
+                    <a href="{{ route('create_tournamentPage') }}"><button class="btn btn-danger mx-2" type="button">Create Tournament</button></a>
+                    <a href="{{ route('tournamentPage') }}"><button class="btn btn-secondary " type="button">Back</button></a>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="container mt-3">
-        <div class="col overflow-auto mt-3 " style="height: 70vh;">
-            @foreach($tournament as $data)
-            <div class="card my-3">
-                <div class="card-header">
-                    <h4 class="fw-bold text-decoration-underline text-center mt-2">{{ $data->tournament_title }}</h4>
-                </div>
-                <div class="card-body ">
-                    <div class="row">
-                        <div class="col-4 d-flex align-items-center justify-content-center">
-                            <div class="col">
-                                <div class="col bg-secondary rounded d-flex align-items-center justify-content-center">
-                                    <img src="/image/logo1.png" class="img-fluid">
+        <div class="col my-2">
+            <h2 class="fw-bold bg-warning my-4 text-center">Upcoming Tournaments</h2>
+            <div class="col overflow-auto mt-3 " style="height: 105vh;">
+                <div class="row d-flex justify-content-center">
+                    @foreach($tournament as $data)
+                    <div class="col-3">
+                        <div class="card my-3">
+                            <div class="card-body">
+                                <div class="col m-2">
+                                    <div class="col rounded d-flex align-items-center justify-content-center">
+                                        <img src="/image/logo1.png" class="img-fluid" height="150px" width="150px">
+                                    </div>
                                 </div>
-                                <div class="col mt-2 fw-bold text-center">
-                                    <h4>Tournament Ended</h4>
+                                <div class="col mt-4">
+                                    <h4 class="fw-bold text-center my-2">{{ $data->tournament_title }}</h4>
+                                    <h6 class="fw-bold text-center my-2">ID: {{ $data->id }}</h6>
+                                </div>
+                                <div class="col my-2">
+                                    <h6 class="fw-bold ">Registration Dates</h6>
+                                    <p>
+                                        Open: {{ $data->start_date_of_registration }}
+                                        <br>
+                                        Close: {{ $data->end_date_of_registration }}
+                                    </p>
+                                    <h6 class="fw-bold ">Tournament Date</h6>
+                                    <p>
+                                        Actual Date of Tournament: {{ $data->date_of_the_tournament }}
+                                    </p>
+                                    <h6 class="fw-bold ">Held At</h6>
+                                    <p>{{ $data->address }} {{ $data->city }} {{ $data->province }}</p>
+                                    <h6 class="fw-bold ">Category: {{ $data->category }}</h6>
+                                    <h6 class="fw-bold ">Age Range: {{ $data->age_range }}</h6>
+                                    <h6 class="fw-bold ">Sponsored by: {{ $data->sponsor }}</h6>
+                                </div>
+                                <div class="col text-center mt-4 my-3">
+                                    <a href="{{ route('viewTourna', $data->id) }}"><button type="button" class="btn btn-warning w-75 fw-bold">View Tournament</button></a>
+                                </div>
+                                <div class="col text-center my-2">
+                                    <button type="button" class="btn btn-warning w-75 fw-bold" data-bs-toggle="modal" data-bs-target="#regform">Register</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-8">
-                            <h3 class="fw-bold">{{ $data->id }}</h3>
-                            <p>
-                                Actual Date of Tournament: {{ $data->date_of_the_tournament }}
-                                Start Date of Registration: {{ $data->start_date_of_registration }}
-                                End Date of Registration: {{ $data->end_date_of_registration }}
-                            </p>
-                            <p>Address: {{ $data->address }} {{ $data->city }} {{ $data->province }}</p>
-                            <p>Category: {{ $data->category }}</p>
-                            <p>Age: {{ $data->age_range }}</p>
-                            <p> Description: 
-                                {{ $data->tournament_description }}
-                            </p>
-                            <p> Sponsored by: {{ $data->sponsor }}
-                            </p>
-                        </div>
                     </div>
-                </div>
-                <div class="card-footer text-center">
-                    <div class="row">
-                        <div class="col-6">
-                            <a href="view_tourna"><button type="button" class="btn btn-primary w-50">View Tournament</button></a>
-                        </div>
-                        <div class="col-6">
-                            <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#regform">Register</button>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
-            @endforeach
         </div>
     </div>
-
-
     @endsection
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-
 </body>
 
 </html>

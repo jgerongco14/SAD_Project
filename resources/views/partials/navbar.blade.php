@@ -31,13 +31,13 @@
 
             <div class="col-3">
                 <ul class="navbar-nav">
-                    @if(Auth::check())
+                    @auth
                     <li class="nav-item">
                         <a href="{{ route('my_profile') }}">
-                            <img src="{{ (Auth::user()->photo) ? route('image.show') : asset('image/pro_icon.png') }}" class="rounded-circle" data-bs-toggle="dropdown" aria-expanded="false" class="img-drop" style="height: 40px; width: 50px;">
+                            <img class="rounded-circle img-drop" name="profile_pic" id="profile_pic" style="height: 40px; width: 50px;" data-bs-toggle="dropdown" aria-expanded="false">
                         </a>
                     </li>
-                    @endif
+                    @endauth
                     </li>
 
                     <li class="nav-item dropdown">
@@ -58,7 +58,6 @@
                     </li>
                 </ul>
             </div>
-
         </div>
     </div>
 </nav>
@@ -66,3 +65,12 @@
 
 
 @yield('content')
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $.get('/profile_pic', function(data) {
+            $('#profile_pic').attr('src', data.photo);
+        });
+    });
+</script>

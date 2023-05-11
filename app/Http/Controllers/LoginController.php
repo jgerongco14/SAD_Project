@@ -20,6 +20,11 @@ class LoginController extends Controller
         return view('home.home');
     }
 
+    public function admin()
+    {
+        return view('admin.admin');
+    }
+
     public function registerUser(Request $request)
     {
         $this->validate($request, [
@@ -33,6 +38,7 @@ class LoginController extends Controller
         $user->alias = $request->input('alias');
         $user->username = $request->input('username');
         $user->password = Hash::make($request->input('password'));
+        $user->usertype = 'user';
         $result = $user->save();
 
         if ($result) {
@@ -45,6 +51,7 @@ class LoginController extends Controller
 
   public function loginUser(Request $request)
     {
+
         $validatedData = $request->validate([
             'username' => 'required',
             'password' => 'required',

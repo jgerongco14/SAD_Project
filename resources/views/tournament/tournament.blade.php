@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <title>Tournament</title>
     <link rel="stylesheet" href="{{ asset('css/tourna.css') }}">
+    @extends('extentions.bootstrap_links')
+    @section('bootstrap_links')
+    @endsection
 </head>
 
 <body>
@@ -44,7 +46,7 @@
                     <div class="row">
                         <div class="col" style="text-align: center; ">
                             <button class="btn btn-warning bot-btn  " type="button">
-                            <div class="col d-flex align-items-center justify-content-center my-2">
+                                <div class="col d-flex align-items-center justify-content-center my-2">
                                     <img src="/image/logo1.png" style="height: 50px; width: 50px;" class="img-bot">
                                     <h5 class="fw-bold mx-3">VS</h5>
                                     <img src="/image/logo1.png" style="height: 50px; width: 50px;" class="img-bot">
@@ -64,7 +66,7 @@
                         </div>
                         <div class="col" style="text-align: center; ">
                             <button class="btn btn-warning bot-btn  " type="button">
-                            <div class="col d-flex align-items-center justify-content-center my-2">
+                                <div class="col d-flex align-items-center justify-content-center my-2">
                                     <img src="/image/logo1.png" style="height: 50px; width: 50px;" class="img-bot">
                                     <h5 class="fw-bold mx-3">VS</h5>
                                     <img src="/image/logo1.png" style="height: 50px; width: 50px;" class="img-bot">
@@ -112,8 +114,6 @@
 
 
     @endsection
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -16,8 +16,12 @@
     @section('content')
     <br><br>
     <div class="container my-4">
+        <div class="col d-flex justify-content-end">
+            <a href="{{ route('displayTourna') }}"><button class="btn btn-secondary " type="button">Back</button></a>
+        </div>
         <div class="row">
             <div class="col-7">
+
                 <div class="col text-center mt-3">
                     <h2 class="fw-bold">Create Tournament</h2>
                 </div>
@@ -57,7 +61,7 @@
                     <div class="col my-2">
                         <div class="form-group">
                             <label for="profile_picture">Tournament Logo</label>
-                            <input type="file" name="tournament_logo" id="tournament_logo" class="form-control" >
+                            <input type="file" name="tournament_logo" id="tournament_logo" class="form-control">
                             @error('tournament_logo')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -95,7 +99,7 @@
                     <div class="row my-2">
                         <div class="col">
                             <label for="name">Tournament Category</label>
-                            <select class="form-select" name="category" aria-label="Default select example" value="{{old('category')}}" required> 
+                            <select class="form-select" name="category" aria-label="Default select example" value="{{old('category')}}" required>
                                 <option selected>Category</option>
                                 <option value="Men's Singles">Men's Singles</option>
                                 <option value="Women's Singles">Women's Singles</option>
@@ -159,7 +163,7 @@
                     <div class="col my-2">
                         <div class="form-group">
                             <label for="name">Name of Organizer</label>
-                            <input type="text" class="form-control" name="name_of_organizer" id="name_of_organizer"  value="{{old('name_of_organizer')}}" required>
+                            <input type="text" class="form-control" name="name_of_organizer" id="name_of_organizer" value="{{old('name_of_organizer')}}" required>
                             @error('name_of_organizer')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -168,14 +172,14 @@
                     <div class="row my-2">
                         <div class="col">
                             <label for="profile_picture">Contact Number</label>
-                            <input type="text" class="form-control" name="contactNumber" id="contactNumber"  value="{{old('contactNumber')}}" required>
+                            <input type="text" class="form-control" name="contactNumber" id="contactNumber" value="{{old('contactNumber')}}" required>
                             @error('contactNumber')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
                             <label for="profile_picture">Email</label>
-                            <input type="text" class="form-control" name="email" id="email"  value="{{old('email')}}" required>
+                            <input type="text" class="form-control" name="email" id="email" value="{{old('email')}}" required>
                             @error('email')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -212,7 +216,7 @@
                     <div class="col my-2">
                         <div class="form-group">
                             <label for="name">Poster Description</label>
-                            <textarea class="form-control" rows="3" name="poster_description" id="poster_description"  value="{{old('poster_description')}}"  required></textarea>
+                            <textarea class="form-control" rows="3" name="poster_description" id="poster_description" value="{{old('poster_description')}}" required></textarea>
                             @error('poster_description')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -235,7 +239,7 @@
                                 <div class="col my-2 mx-2">
                                     <div class="form-group">
                                         <label for="profile_picture">Proof of Payment</label>
-                                        <input type="file" name="proof_of_payment" id="proof_of_payment" class="form-control"  value="{{old('proof_of_payment')}}" required>
+                                        <input type="file" name="proof_of_payment" id="proof_of_payment" class="form-control" value="{{old('proof_of_payment')}}" required>
                                         @error('proof_of_payment')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror

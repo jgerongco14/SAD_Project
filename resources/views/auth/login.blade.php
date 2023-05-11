@@ -47,12 +47,12 @@
                                         <br>
                                         <div class="form-group">
                                             <h6 class="fw-bold text-warning my-3">Username</h6>
-                                            <input class="form-control " placeholder="username" type="text" name="username">
+                                            <input class="form-control " placeholder="username" type="text" name="username" value="{{old('username')}}">
                                             <span class="text-danger"> @error('username') {{$message}} @enderror</span>
                                         </div>
                                         <h6 class="fw-bold text-warning my-3">Password</h6>
                                         <div class="form-group input-group">
-                                            <input type="password" class="form-control" placeholder="password" id="password" name="password" />
+                                            <input type="password" class="form-control" placeholder="password" id="password" name="password" value="{{old('password')}}" />
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <a href="#" id="icon-click">

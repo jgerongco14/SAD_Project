@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tournament;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Log;
 
 
 class DataController extends Controller
@@ -29,13 +29,14 @@ class DataController extends Controller
     public function showImage()
     {
         $user = User::find(Auth::user()->id);
-
-        if ($user) {
-            $path = storage_path('app/' . $user->photo);
-            return response()->file($path);
-        } else {
-            // Handle image not found
-            return response()->view('errors.image_not_found');
+      
+        if($user) {
+            $path = asset('storage/' . $user->photo);
+            return response()->json([
+                'photo' => $path,
+            ]);
+        }else{
+            return response()->view('Something Wrong');
         }
     }
 
@@ -72,6 +73,13 @@ class DataController extends Controller
     {
         $tournament = Tournament::whereNull('status')->get();
         return view('admin.admin', ['tournament' => $tournament]);
+    }
+
+    public function viewTourna($id)
+    {
+        $tournament = Tournament::find($id);
+    
+        return view('tournament.view_tourna', ['tournament' => $tournament]);
     }
     
 }

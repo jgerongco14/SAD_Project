@@ -26,6 +26,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
 Route::get('/aboutPickleBall', function () {
     return view('about.about');
 });
@@ -36,9 +37,6 @@ Route::get('/gallery', function () {
 
 
 //admin page
-Route::get('/admin', function () {
-    return view('admin.admin');
-});
 
 
 //login landing page
@@ -47,6 +45,10 @@ Route::get('/home', [LoginController::class, 'login'])->name('login');
 
 //home page
 Route::get('/home', [LoginController::class, 'home'])->name('home');
+
+//home page
+Route::get('/admin', [LoginController::class, 'admin'])->name('admin');
+
 
 //registration page
 Route::get('/registration', [ViewPageController::class, 'registration'])->name('registration');
@@ -79,11 +81,6 @@ Route::get('/events', function () {
 });
 
 
-Route::get('/view_tourna', function () {
-    return view('tournament.view_tourna');
-});
-
-
 
 Route::get('/view_club', function () {
     return view('clubs.view_club');
@@ -92,9 +89,6 @@ Route::get('/view_club', function () {
 
 
 //back-end routes
-
-//checking the db connection
-Route::get('/check-connection', [YourController::class, 'checkDbConnection']);
 
 // login and register controller
 Route::post('/register-user', [LoginController::class, 'registerUser'])->name('registerUser');
@@ -117,7 +111,7 @@ Route::post('/profile_pic', [PostController::class, 'updatePhoto'])->name('updat
 Route::post('/my_profile', [PostController::class, 'updateProfile'])->name('update_profile');
 
 //show all user data in a table 
-Route::get('/table', [getControllerData::class, 'showtable'])->name('showtable');
+Route::get('/table', [DataController::class, 'showtable'])->name('showtable');
 
 //show table for player and player/coach
 Route::get('/player', [DataController::class, 'showPlayerTable'])->name('playertable');
@@ -138,3 +132,7 @@ Route::get('/admin', [DataController::class, 'unapprovedTournament'])->name('una
 
 //if it click approve button it will update the status in the database
 Route::put('/admin/{id}', [PostController::class, 'approvedTournamentByAdmin'])->name('tournament_approve');
+
+
+//if it click approve button it will update the status in the database
+Route::get('/view_tourna/{id}', [DataController::class, 'viewTourna'])->name('viewTourna');

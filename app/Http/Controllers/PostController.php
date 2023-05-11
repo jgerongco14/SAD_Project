@@ -73,8 +73,7 @@ class PostController extends Controller
 
 
         $user = User::find(Auth::user()->id);
-        $path = $request->file('photo')->store('public/image');
-        $user->photo = $path;
+        $user->photo = $request->file('photo')->store('image/profile', 'public');
         $result = $user->save();
 
         if ($result) {

@@ -7,9 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{$user->firstName}} '{{$user->alias}}' {{$user->lastName}} {{$user->suffix}}</title>
     <link rel="stylesheet" href="{{ asset('css/cp.css') }}">
-    @extends('extentions.bootstrap_links')
-    @section('bootstrap_links')
-    @endsection
     <style>
         .wrapper {
             height: 200px;
@@ -41,6 +38,9 @@
             display: none;
         }
     </style>
+    @extends('extentions.bootstrap_links')
+    @section('bootstrap_links')
+    @endsection
 </head>
 
 <body>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="col d-flex justify-content-center">
                         <div class="form-group wrapper d-flex justify-content-center">
-                            <img src="{{ (Auth::user()->photo) ? route('image.show') : asset('image/pro_icon.png') }}" alt="avatar" class="rounded-circle img-fluid photo" name="photo" id="photo" data-bs-toggle="modal" data-bs-target="#profilePictureModal">
+                            <img src="" alt="avatar" class="rounded-circle img-fluid photo" name="photo" id="photo" data-bs-toggle="modal" data-bs-target="#profilePictureModal">
                         </div>
                     </div>
                     <div class="col text-center">
@@ -104,25 +104,25 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">First Name:</label>
+                                        <label for="firstName">First Name:</label>
                                         <input type="text" class="form-control" name="firstName" id="firstName" value="{{ $user->firstName}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="form-group">
-                                        <label for="name">Middle Initial:</label>
+                                        <label for="middleInitial">Middle Initial:</label>
                                         <input type="text" class="form-control" name="middleInitial" id="middleInitial" value="{{$user->middleInitial}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">Last Name:</label>
+                                        <label for="lastName">Last Name:</label>
                                         <input type="text" class="form-control" name="lastName" id="lastName" value="{{$user->lastName}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="form-group">
-                                        <label for="name">Suffix:</label>
+                                        <label for="suffix">Suffix:</label>
                                         <input type="text" class="form-control" name="suffix" id="suffix" value="{{$user->suffix}}" readonly>
                                     </div>
                                 </div>
@@ -130,14 +130,14 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">Nickname/Alias:</label>
+                                        <label for="alias">Nickname/Alias:</label>
                                         <input type="text" class="form-control" name="alias" id="alias" value="{{$user->alias}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">Role:</label>
-                                        <select class="form-select" name="role" aria-label="Default select example" readonly disabled>
+                                        <label for="role">Role:</label>
+                                        <select class="form-select" id="role" name="role" aria-label="Default select example" readonly disabled>
                                             <option selected>Role</option>
                                             <option value="player" {{ $role === 'player' ? 'selected' : '' }}>Player</option>
                                             <option value="coach" {{ $role === 'coach' ? 'selected' : '' }}>Coach</option>
@@ -173,7 +173,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">Birthdate:</label>
+                                        <label for="birthdate">Birthdate:</label>
                                         <input type="text" class="form-control" name="birthdate" id="birthdate" value="{{$user->birthdate}}" readonly>
                                     </div>
                                 </div>
@@ -182,13 +182,13 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">Nationality:</label>
+                                        <label for="nationality">Nationality:</label>
                                         <input type="text" class="form-control" name="nationality" id="nationality" value="{{$user->nationality}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">Country:</label>
+                                        <label for="country">Country:</label>
                                         <input type="text" class="form-control" name="country" id="country" value="{{$user->country}}" readonly>
                                     </div>
                                 </div>
@@ -196,7 +196,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">Address:</label>
+                                        <label for="address">Address:</label>
                                         <input type="text" class="form-control" name="address" id="address" value="{{$user->address}}" readonly>
                                     </div>
                                 </div>
@@ -204,13 +204,13 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">Province:</label>
+                                        <label for="province">Province:</label>
                                         <input type="text" class="form-control" name="province" id="province" value="{{$user->province}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">City:</label>
+                                        <label for="city">City:</label>
                                         <input type="text" class="form-control" name="city" id="city" value="{{$user->city}}" readonly>
                                     </div>
                                 </div>
@@ -219,19 +219,19 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">Email:</label>
+                                        <label for="email">Email:</label>
                                         <input type="text" class="form-control" name="email" id="email" value="{{$user->email}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">Telephone Number:</label>
+                                        <label for="telephoneNumber">Telephone Number:</label>
                                         <input type="text" class="form-control" name="telephoneNumber" id="telephoneNumber" value="{{$user->telephoneNumber}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">Phone Number:</label>
+                                        <label for="mobileNumber">Phone Number:</label>
                                         <input type="text" class="form-control" name="mobileNumber" id="mobileNumber" value="{{$user->mobileNumber}}" readonly>
                                     </div>
                                 </div>
@@ -240,19 +240,19 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">Facebook:</label>
+                                        <label for="facebookLink">Facebook:</label>
                                         <input type="text" class="form-control" name="facebookLink" id="facebookLink" value="{{$user->facebookLink}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">Instagram:</label>
+                                        <label for="instagramLink">Instagram:</label>
                                         <input type="text" class="form-control" name="instagramLink" id="instagramLink" value="{{$user->instagramLink}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="name">Twitter:</label>
+                                        <label for="twitterLink">Twitter:</label>
                                         <input type="text" class="form-control" name="twitterLink" id="twitterLink" value="{{$user->twitterLink}}" readonly>
                                     </div>
                                 </div>
@@ -330,7 +330,7 @@
                         <div class="alert alert-danger">{{Session::get('fail')}}</div>
                         @endif
                         <div class="form-group">
-                            <label for="profile_picture">Choose Profile Picture</label>
+                            <label for="photo">Choose Profile Picture</label>
                             <input type="file" name="photo" id="photo" class="form-control">
                         </div>
                         <div class="modal-footer">
@@ -342,7 +342,14 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $.get('/profile_pic', function(data) {
+                $('#photo').attr('src', data.photo);
+            });
+        });
+
         document.getElementById('editBtn').addEventListener('click', function() {
             // Enable the text fields
             document.getElementById('firstName').readOnly = false;
