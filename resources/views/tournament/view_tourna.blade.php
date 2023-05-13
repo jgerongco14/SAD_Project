@@ -10,6 +10,27 @@
     @extends('extentions.bootstrap_links')
     @section('bootstrap_links')
     @endsection
+    <style>
+        .wrapper {
+            height: 100px;
+            width: 100px;
+            border: 1px solid black;
+            overflow: hidden;
+            border-radius: 50%;
+
+        }
+
+        .photo {
+            height: 100%;
+            width: 100%;
+        }
+
+
+        .hidden {
+            display: none;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -20,22 +41,35 @@
         <div class="col d-flex justify-content-end">
             <a href="{{ route('displayTourna') }}"><button class="btn btn-secondary " type="button">Back</button></a>
         </div>
-        <h1 class="fw-bolder mt-3 text-center">TOURNAMENT</h1>
+        <h1 class="fw-bolder mt-3 text-center">{{ $tournament->tournament_title }}</h1>
         <div class="col my-5">
             <div class="row">
                 <div class="col-4 ">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <img src="/image/logo1.png" class="img-fluid">
+                        <img src="{{ asset('storage/' . $tournament->tournament_logo) }}" class="img-fluid" height="150px" width="150px">
                     </div>
-                    <h3 class="fw-bold text-center text-decoration-underline">Legacy Oktoberfest</h3>
                 </div>
                 <div class="col-8">
-                    <p>Date: 10/07/22 - 10/09/22</p>
-                    <p>Address: Bankal Davao City Davao Del Sur</p>
-                    <p>Category: Men's Singles</p>
-                    <p>Age: 40-60</p>
-                    <p> Description: Legacy Oktoberfest Open presented by Gamma Pickleball hosted by Tyson Apostol.
-                        Rockin’ Protein Pickleball Center Bank Park powered by Legacy Sports Philippines, Mesa.</p>
+                    <div class="col mt-4">
+                        <h6 class="fw-bold text-center my-2">ID: {{ $tournament->id }}</h6>
+                    </div>
+                    <div class="col my-2">
+                        <h6 class="fw-bold ">Registration Dates</h6>
+                        <p>
+                            Open: {{ $tournament->start_date_of_registration }}
+                            <br>
+                            Close: {{ $tournament->end_date_of_registration }}
+                        </p>
+                        <h6 class="fw-bold ">Tournament Date</h6>
+                        <p>
+                            Actual Date of Tournament: {{ $tournament->date_of_the_tournament }}
+                        </p>
+                        <h6 class="fw-bold ">Held At</h6>
+                        <p>{{ $tournament->address }} {{ $tournament->city }} {{ $tournament->province }}</p>
+                        <h6 class="fw-bold ">Category: {{ $tournament->category }}</h6>
+                        <h6 class="fw-bold ">Age Range: {{ $tournament->age_range }}</h6>
+                        <h6 class="fw-bold ">Sponsored by: {{ $tournament->sponsor }}</h6>
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,7 +161,7 @@
                             <thead class="text-center bg-dark sticky-top" style="color:white;">
                                 <tr>
                                     <th>
-                                        No.
+                                        User ID
                                     </th>
                                     <th>
                                         Photo
@@ -136,25 +170,30 @@
                                         Player's Name
                                     </th>
                                     <th>
-                                        Request
+                                        Proof of Payment
+                                    </th>
+                                    <th>
+                                        Status
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="align-middle text-center">
-                                        <p class="fw-bold ">1</p>
+                                        <h6 class="user_id"></h6>
                                     </td>
                                     <td class="align-middle text-center"><img src="/image/pro_icon.png" class="img-bot" style="height: 50px; width:60px;"></td>
                                     <td class="align-middle text-center">
-                                        <p class="text-decoration-underline fw-bold">CARLO CASTRO</p>
+                                        <p class=" fw-bold">CARLO CASTRO</p>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <img src="" alt="avatar" class="rounded-circle photo" name="player_proof_of_payment" id="player_proof_of_payment">
                                     </td>
                                     <td class="text-center">
                                         <button type="button" class="btn btn-primary w-25 fw-bold ms-2">Accept</button>
                                         <button type="button" class="btn btn-primary w-25 fw-bold ms-2">Decline</button>
                                     </td>
                                 </tr>
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -184,26 +223,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="align-middle text-center">
-                                        <p class="fw-bold ">1</p>
-                                    </td>
-                                    <td class="align-middle text-center"><img src="/image/pro_icon.png" class="img-bot" style="height: 50px; width:60px;"></td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-decoration-underline fw-bold">SAMANTHA ELECHICON</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-center">0</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-center">0</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-center">0</p>
-                                    </td>
-                                </tr>
-                            </tbody>
+                            <tbody id="playerTableBody"></tbody>
                         </table>
                     </div>
                     <div class="col my-5 text-center">
@@ -221,6 +241,7 @@
         </div>
     </div>
     @endsection
+
 </body>
 
 </html>

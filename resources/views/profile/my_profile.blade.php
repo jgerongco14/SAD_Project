@@ -139,9 +139,9 @@
                                         <label for="role">Role:</label>
                                         <select class="form-select" id="role" name="role" aria-label="Default select example" readonly disabled>
                                             <option selected>Role</option>
-                                            <option value="player" {{ $role === 'player' ? 'selected' : '' }}>Player</option>
-                                            <option value="coach" {{ $role === 'coach' ? 'selected' : '' }}>Coach</option>
-                                            <option value="player/coach" {{ $role === 'player/coach' ? 'selected' : '' }}>Playing/Coach</option>
+                                            <option value="Player" {{ $role === 'player' ? 'selected' : '' }}>Player</option>
+                                            <option value="Coach" {{ $role === 'coach' ? 'selected' : '' }}>Coach</option>
+                                            <option value="Player/Coach" {{ $role === 'player/coach' ? 'selected' : '' }}>Playing/Coach</option>
                                         </select>
                                     </div>
                                 </div>
@@ -154,7 +154,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="sex" id="male" value="male" {{ $sex === 'male' ? 'checked' : '' }} readonly disabled>
+                                                    <input class="form-check-input" type="radio" name="sex" id="male" value="Male" {{ $sex === 'Male' ? 'checked' : '' }} readonly disabled>
                                                     <label class="form-check-label fw-bold" for="male">
                                                         Male
                                                     </label>
@@ -162,8 +162,8 @@
                                             </div>
                                             <div class="col">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="sex" id="female" value="female" {{ $sex === 'female' ? 'checked' : '' }} readonly disabled>
-                                                    <label class="form-check-label fw-bold" for="female">
+                                                    <input class="form-check-input" type="radio" name="sex" id="female" value="Female" {{ $sex === 'Female' ? 'checked' : '' }} readonly disabled>
+                                                    <label class="form-check-label fw-bold" for="emale">
                                                         Female
                                                     </label>
                                                 </div>

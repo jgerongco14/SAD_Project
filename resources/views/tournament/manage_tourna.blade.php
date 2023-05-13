@@ -231,6 +231,15 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="col my-2">
+                        <div class="form-group">
+                            <label for="registration_fee">Tournament Registration Fee</label>
+                            <input type="text" class="form-control" name="registration_fee" id="registration_fee" value="{{old('registration_fee')}}" required>
+                            @error('registration_fee')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                     <h5 class="fw-bold my-4">IV. Payment</h5>
                     <div class="card">
                         <div class="card-body">
