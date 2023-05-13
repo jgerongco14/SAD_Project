@@ -6,6 +6,7 @@ use App\Models\Tournament;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Tournament_Players;
 
 class PostController extends Controller
 {
@@ -105,6 +106,7 @@ class PostController extends Controller
             'poster_title' => 'required',
             'poster_description' => 'required',
             'admin_gcash' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'registration_fee' => 'required',
             'proof_of_payment' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
             'tournament_logo.max' => 'The tournament logo must not be larger than 2 MB.',
@@ -138,6 +140,7 @@ class PostController extends Controller
         $tournament->poster_title = $request->input('poster_title');
         $tournament->poster_description = $request->input('poster_description');
         $tournament->admin_gcash = $request->file('admin_gcash')->store('image/tournament/admin_gcash', 'public');
+        $tournament->registration_fee = $request->input('registration_fee');
         $tournament->proof_of_payment = $request->file('proof_of_payment')->store('image/tournament/proof_of_payment', 'public');
 
         $result = $tournament->save();
@@ -160,5 +163,31 @@ class PostController extends Controller
         } else {
             return redirect()->back()->with('fail', 'Something went wrong');
         }
+    }
+
+    public function getPlayersRegistration(Request $request) {
+
+        $request->validate([
+            'tournament_id' => 'required',
+            'user_id' => 'required',
+            'player_proof_of_payment' => 'required|image|max:2048',
+        ]);
+
+        $tournament_players = new Tournament_Players;
+        $tournament_players->user_id = $request->input('user_id');
+        $tournament_players->tournament_id = $request->input('tournament_id');
+        $tournament_players->player_proof_of_payment = $request->file('player_proof_of_payment')->store('image/registration/proof_of_payment', 'public');
+        $tournament_players->ranking = '0';
+        $tournament_players->wins = '0';
+        $tournament_players->loss = '0';
+        $tournament_players->games = '0';
+        $result = $tournament_players->save();
+
+        if ($result) {
+            return redirect()->back()->with('success', 'Your registration is been sent please wait for approval!');
+        } else {
+            return redirect()->back()->with('fail', 'Something went wrong');
+        }
+
     }
 }

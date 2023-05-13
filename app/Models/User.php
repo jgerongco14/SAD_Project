@@ -15,4 +15,9 @@ class User extends AuthenticatableUser implements Authenticatable
 
     protected $table = 'users';
 
+    public function tournament()
+    {
+        return $this->belongsToMany(Tournament::class, 'tournament_players');
+    }
+
 }

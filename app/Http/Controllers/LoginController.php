@@ -60,7 +60,14 @@ class LoginController extends Controller
         if (Auth::attempt($validatedData)) {
             $user = Auth::user();
             $request->session()->put('id', $user->id);
-            return redirect()->route('home');
+    
+            if ($user->usertype === 'user') {
+                return redirect()->route('home');
+            } elseif ($user->usertype === 'admin') {
+                return redirect()->route('admin');
+            } else {
+                // Handle other user types or scenarios
+            }
         } else {
             return back()->with('fail', 'Invalid username or password.')->withInput($validatedData);
         }

@@ -36,9 +36,6 @@ Route::get('/gallery', function () {
 });
 
 
-//admin page
-
-
 //login landing page
 Route::get('/home', [LoginController::class, 'login'])->name('login');
 
@@ -46,7 +43,7 @@ Route::get('/home', [LoginController::class, 'login'])->name('login');
 //home page
 Route::get('/home', [LoginController::class, 'home'])->name('home');
 
-//home page
+//admin page
 Route::get('/admin', [LoginController::class, 'admin'])->name('admin');
 
 
@@ -127,12 +124,24 @@ Route::post('/manage tournament', [PostController::class, 'create_tournamentForm
 Route::get('/tournamentList', [DataController::class, 'displayTourna'])->name('displayTourna');
 
 // display data to tournament page
-Route::get('/admin', [DataController::class, 'unapprovedTournament'])->name('unapprovedTournament');
+Route::get('/admin_table', [DataController::class, 'unapprovedTournament'])->name('unapprovedTournament');
 
 
 //if it click approve button it will update the status in the database
-Route::put('/admin/{id}', [PostController::class, 'approvedTournamentByAdmin'])->name('tournament_approve');
+Route::put('/admin_table/{id}', [PostController::class, 'approvedTournamentByAdmin'])->name('tournament_approve');
 
 
 //if it click approve button it will update the status in the database
 Route::get('/view_tourna/{id}', [DataController::class, 'viewTourna'])->name('viewTourna');
+
+// display data to modal in tournament
+Route::get('/tournamentModal', [DataController::class, 'registrationUser'])->name('registrationUser');
+
+// display data to modal
+Route::get('/tournamentModal/{tournament_id}', [DataController::class, 'regUserTournament'])->name('regUserTournament');
+
+// get data from modal it is the joint table by users and tournament
+Route::post('/register_players', [PostController::class, 'getPlayersRegistration'])->name('getPlayersRegistration');
+
+// // display data to table in view_tourna
+// Route::get('/unapprove_players/{tournamentId}', [DataController::class, 'unapprovedPlayers'])->name('unapprovedPlayers');
