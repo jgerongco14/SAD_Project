@@ -129,7 +129,7 @@
                             <div class="col-4 d-flex justify-content-center align-items-center">
                                 <div class="form-group mt-4">
                                     <h4>Registration Fee: <span class="registration_fee"></span></h4>
-                                    <img src="" class="form-control" alt="Tournament Logo" id="tournament_logo" name="tournament_logo" width="200px" height="300px">
+                                    <img src="" class="form-control" alt="Tournament Logo" id="admin_gcash" name="admin_gcash" width="200px" height="300px">
                                 </div>
                             </div>
                             <div class="col">
@@ -258,7 +258,7 @@
                     $('#title').html(data.tournament_title);
                     $('.tournament_title').text(data.tournament_title);
                     $('.registration_fee').text(data.registration_fee);
-                    $('#tournament_logo').attr('src', data.tournament_logo);
+                    $('#admin_gcash').attr('src', data.admin_gcash);
                 });
             });
         }

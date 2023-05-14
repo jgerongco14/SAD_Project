@@ -132,7 +132,8 @@ Route::put('/admin_table/{id}', [PostController::class, 'approvedTournamentByAdm
 
 
 //if it click approve button it will update the status in the database
-Route::get('/view_tourna/{id}', [DataController::class, 'viewTourna'])->name('viewTourna');
+ Route::get('/view_tourna/{id}', [DataController::class, 'viewTourna'])->name('viewTourna');
+
 
 // display data to modal in tournament
 Route::get('/tournamentModal', [DataController::class, 'registrationUser'])->name('registrationUser');
@@ -143,5 +144,11 @@ Route::get('/tournamentModal/{tournament_id}', [DataController::class, 'regUserT
 // get data from modal it is the joint table by users and tournament
 Route::post('/register_players', [PostController::class, 'getPlayersRegistration'])->name('getPlayersRegistration');
 
-// // display data to table in view_tourna
-// Route::get('/unapprove_players/{tournamentId}', [DataController::class, 'unapprovedPlayers'])->name('unapprovedPlayers');
+// display data to table in view_tourna in tabpanel requests registration but it is from the tournament_players database
+Route::get('/unapprove_players/{tournamentId}', [DataController::class, 'unapprovedPlayers'])->name('unapprovedPlayers');
+
+//if it click approve button it will update the status in the database
+Route::put('/unapprove_players/{id}', [PostController::class, 'tournamentAdmin'])->name('tournamentAdmin');
+
+// display data to table in view_tourna in tabpanel requests registration but it is from the tournament_players database
+Route::get('/approved_players/{tournamentId}', [DataController::class, 'approvedPlayers'])->name('approvedPlayers');

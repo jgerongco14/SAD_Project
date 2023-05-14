@@ -173,7 +173,7 @@ class PostController extends Controller
             'player_proof_of_payment' => 'required|image|max:2048',
         ]);
 
-        $tournament_players = new Tournament_Players;
+        $tournament_players = new Tournament_Players();
         $tournament_players->user_id = $request->input('user_id');
         $tournament_players->tournament_id = $request->input('tournament_id');
         $tournament_players->player_proof_of_payment = $request->file('player_proof_of_payment')->store('image/registration/proof_of_payment', 'public');
@@ -189,5 +189,18 @@ class PostController extends Controller
             return redirect()->back()->with('fail', 'Something went wrong');
         }
 
+    }
+
+    public function tournamentAdmin($id)
+    {
+        $tournament_players = Tournament_Players::findOrFail($id);
+        $tournament_players->status = 'Approve';
+        $result = $tournament_players->save();
+
+        if ($result) {
+            return redirect()->back()->with('success', 'The player registration has been approved!');
+        } else {
+            return redirect()->back()->with('fail', 'Something went wrong');
+        }
     }
 }
