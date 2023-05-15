@@ -6,7 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\ViewPageController;
 use App\Http\Controllers\PostController;
-
+use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,12 +72,6 @@ Route::get('/gallery', [ViewPageController::class, 'galleryPage'])->name('galler
 
 //clubs page
 Route::get('/clubs', [ViewPageController::class, 'clubsPage'])->name('clubsPage');
-
-
-Route::get('/events', function () {
-    return view('events.events');
-});
-
 
 
 Route::get('/view_club', function () {
@@ -167,3 +161,6 @@ Route::get('/viewClub/{id}', [ClubController::class, 'viewClub'])->name('viewClu
 
 //display players or coaches that join the club
 Route::get('/clubMembers/{clubId}', [ClubController::class, 'viewClubMembers'])->name('viewClubMembers');
+
+// display event data
+Route::get('/events', [DataController::class, 'displayEvents'])->name('displayEvents');

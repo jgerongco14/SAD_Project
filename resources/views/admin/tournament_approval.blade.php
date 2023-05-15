@@ -37,9 +37,6 @@
                                 Tournament Title
                             </th>
                             <th>
-                                Description
-                            </th>
-                            <th>
                                 Organizer
                             </th>
                             <th>
@@ -75,7 +72,6 @@
                                 </div>
                             </td>
                             <td>{{ $data['tournament_title'] }}</td>
-                            <td>{{ $data['tournament_description']}}</td>
                             <td>{{ $data['name_of_organizer'] }}</td>
                             <td>
                                 <div class="d-flex flex-column">

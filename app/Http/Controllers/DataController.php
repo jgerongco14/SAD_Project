@@ -146,4 +146,11 @@ class DataController extends Controller
         return response()->json($tournament_players);
     }
 
+    public function displayEvents()
+    {
+        $tournament = Tournament::whereIn('status', ['Approve'])->get();
+        return view('events.events', ['tournament' => $tournament]);
+    }
+    
+
 }

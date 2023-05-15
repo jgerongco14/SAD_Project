@@ -46,6 +46,7 @@
 <body>
     @extends('partials.navbar')
     @section('content')
+    <br>
     <div class="col d-flex justify-content-end">
         <a href="{{ route('home') }}"><button class="btn btn-secondary " type="button">Back</button></a>
     </div>
@@ -297,7 +298,8 @@
                             </thead>
                             <tbody class="text-center">
                                 <tr>
-                                    <td>
+                                    <h1 class="fw-bolder">Coming Sooon</h1>
+                                    <!-- <td>
                                         Legacy Oktoberfest
                                     </td>
                                     <td>
@@ -308,7 +310,7 @@
                                     </td>
                                     <td>
                                         Champion
-                                    </td>
+                                    </td> -->
                                 </tr>
                             </tbody>
                         </table>

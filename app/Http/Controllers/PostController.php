@@ -69,7 +69,7 @@ class PostController extends Controller
     {
         // Validate the form data, including the file
         $request->validate([
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Assuming file is an image with max size of 2MB
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240', // Assuming file is an image with max size of 2MB
         ]);
 
 
@@ -88,7 +88,7 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'tournament_title' => 'required',
-            'tournament_logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'tournament_logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
             'date_of_the_tournament' => 'required',
             'start_date_of_registration' => 'required',
             'end_date_of_registration' => 'required',
@@ -102,12 +102,12 @@ class PostController extends Controller
             'contactNumber' => 'required|numeric',
             'email' => 'required',
             'sponsor' => 'required',
-            'poster' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'poster' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
             'poster_title' => 'required',
             'poster_description' => 'required',
-            'admin_gcash' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'admin_gcash' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
             'registration_fee' => 'required',
-            'proof_of_payment' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'proof_of_payment' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
         ], [
             'tournament_logo.max' => 'The tournament logo must not be larger than 2 MB.',
             'poster.max' => 'The tournament poster must not be larger than 2 MB.',
@@ -115,7 +115,7 @@ class PostController extends Controller
             'proof_of_payment.max' => 'The proof of payment must not be larger than 2 MB.',
         ]);
 
-        
+
 
         $user = User::find(Auth::user()->id);
 
@@ -165,17 +165,30 @@ class PostController extends Controller
         }
     }
 
-    public function getPlayersRegistration(Request $request) {
-
+    public function getPlayersRegistration(Request $request)
+    {
         $request->validate([
             'tournament_id' => 'required',
             'user_id' => 'required',
-            'player_proof_of_payment' => 'required|image|max:2048',
+            'player_proof_of_payment' => 'required|image|max:10240',
         ]);
 
+        $tournament_id = $request->input('tournament_id');
+        $user_id = $request->input('user_id');
+
+        // Check if the user is already registered and their status is "Approved"
+        $existingRegistration = Tournament_Players::where('user_id', $user_id)
+            ->where('user_id', $user_id)
+            ->where('status', 'Approve')
+            ->first();
+
+        if ($existingRegistration) {
+            return redirect()->back()->with('fail', 'You are already registered for this tournament.');
+        }
+
         $tournament_players = new Tournament_Players();
-        $tournament_players->user_id = $request->input('user_id');
-        $tournament_players->tournament_id = $request->input('tournament_id');
+        $tournament_players->user_id = $user_id;
+        $tournament_players->tournament_id = $tournament_id;
         $tournament_players->player_proof_of_payment = $request->file('player_proof_of_payment')->store('image/registration/proof_of_payment', 'public');
         $tournament_players->ranking = '0';
         $tournament_players->wins = '0';
@@ -184,12 +197,12 @@ class PostController extends Controller
         $result = $tournament_players->save();
 
         if ($result) {
-            return redirect()->back()->with('success', 'Your registration is been sent please wait for approval!');
+            return redirect()->back()->with('success', 'Your registration has been sent. Please wait for approval!');
         } else {
             return redirect()->back()->with('fail', 'Something went wrong');
         }
-
     }
+
 
     public function tournamentAdmin($id)
     {

@@ -16,7 +16,7 @@ class ClubController extends Controller
         // Validate the form data, including the file
         $request->validate([
             'clubName' => 'required',
-            'clubLogo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Assuming file is an image with max size of 2MB
+            'clubLogo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240', // Assuming file is an image with max size of 2MB
             'clubPresident' => 'required',
             'originCity' => 'required',
         ]);
@@ -57,7 +57,7 @@ class ClubController extends Controller
             ->first();
 
         if ($existingUserClub) {
-            return redirect()->back()->with('fail', 'You are already registered in the club.');
+            return redirect()->back()->with('fail', 'You are already a member of this club.');
         }
 
         // Create a new UserClub entry

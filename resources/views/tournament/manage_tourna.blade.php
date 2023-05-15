@@ -334,6 +334,16 @@
     </div>
 
     @endsection
+    <script>
+        var category = document.querySelector('select[name="category"]').value;
+
+        // Check if the selected category is the default "Category" option
+        if (category === "Category") {
+            // Display an error message or perform any necessary action
+            alert("Please select a category.");
+            return; // Exit the function, preventing further code execution
+        }
+    </script>
 </body>
 
 </html>

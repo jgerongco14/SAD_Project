@@ -44,24 +44,24 @@
                 </div>
             </div>
         </div>
-        <div class="col my-2">
+        <div class="col my-1">
             <h2 class="fw-bold bg-warning my-4 text-center">Tournaments</h2>
-            <div class="col overflow-auto mt-3 " style="height: 105vh;">
+            <div class="col overflow-auto " style="height: 130vh;">
                 <div class="row d-flex justify-content-center">
                     @foreach($tournament as $data)
                     <div class="col-3">
                         <div class="card my-3 h-100">
                             <div class="card-body">
-                                <div class="col m-2">
+                                <div class="col my-1">
                                     <div class="col rounded d-flex align-items-center justify-content-center">
                                         <img src="{{ asset('storage/' . $data->tournament_logo) }}" class="img-fluid" style="height: 150px; width: 150px;">
                                     </div>
                                 </div>
                                 <div class="col mt-4">
-                                    <h4 class="fw-bold text-center my-2">{{ $data->tournament_title }}</h4>
-                                    <h6 class="fw-bold text-center my-2">ID: {{ $data->id }}</h6>
+                                    <h4 class="fw-bold text-center my-1">{{ $data->tournament_title }}</h4>
+                                    <h6 class="fw-bold text-center my-1">ID: {{ $data->id }}</h6>
                                 </div>
-                                <div class="col my-2">
+                                <div class="col my-1">
                                     <h6 class="fw-bold ">Registration Dates</h6>
                                     <p>
                                         Open: {{ $data->start_date_of_registration }}
@@ -83,7 +83,7 @@
                                 <div class="col text-center mt-4 my-3">
                                     <a href="{{ route('viewTourna', $data->id) }}"><button type="button" class="btn btn-warning w-75 fw-bold">More Info</button></a>
                                 </div>
-                                <div class="col text-center my-2">
+                                <div class="col text-center my-1">
                                     <button class="btn bg-warning fw-bold w-75" data-bs-toggle="modal" data-bs-target="#registration" onclick="checkRegistrationDates('{{ $data->start_date_of_registration }}', '{{ $data->end_date_of_registration }}', '{{$data->id}}')">
                                         Register
                                     </button>
@@ -91,8 +91,8 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
     </div>
@@ -146,7 +146,7 @@
                                 <div class="form-group">
                                     <input type="hidden" class="form-control" name="tournament_id" id="tournament_id" value="" readonly>
                                 </div>
-                                <div class="col my-2">
+                                <div class="col my-1">
                                     <span class="fw-bold">Name: </span>
                                     <span class="firstName"></span>
                                     <span class="middleInitial"></span>
@@ -154,27 +154,27 @@
                                     <span class="lastName"></span>
                                     <span class="suffix"></span>
                                 </div>
-                                <div class="col my-2">
+                                <div class="col my-1">
                                     <span class="fw-bold">Sex: </span>
                                     <span class="sex"></span>
                                 </div>
-                                <div class="col my-2">
+                                <div class="col my-1">
                                     <span class="fw-bold">Birthdate: </span>
                                     <span class="birthdate"></span>
                                 </div>
-                                <div class="col my-2">
+                                <div class="col my-1">
                                     <span class="fw-bold">Nationality: </span>
                                     <span class="nationality"></span>
                                 </div>
-                                <div class="col my-2">
+                                <div class="col my-1">
                                     <span class="fw-bold">Email: </span>
                                     <span class="email"></span>
                                 </div>
                                 <h5 class="fw-bold my-4">IV. Payment</h5>
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="col my-2" style="text-align: justify;">
-                                            <div class="col my-2 mx-2">
+                                        <div class="col my-1" style="text-align: justify;">
+                                            <div class="col my-1 mx-2">
                                                 <div class="form-group">
                                                     <label for="player_proof_of_payment">Proof of Payment</label>
                                                     <input type="file" name="player_proof_of_payment" id="player_proof_of_payment" class="form-control" value="{{old('player_proof_of_payment')}}" required>
@@ -190,10 +190,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <div class="col form-group text-center mx-4">
+                        <div class="col form-group text-center ">
                             <button class="btn btn-primary w-75" type="submit">Register</button>
                         </div>
-                        <div class="col form-group text-center mx-4">
+                        <div class="col form-group text-center">
                             <button type="button" class="btn btn-secondary w-75" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -216,7 +216,7 @@
                 alert("Tournament registration is closed.");
                 $('#registration').modal('hide');
             } else {
-                // The registration form is accessible when the date is between start and end dates.
+
                 $('#registration').modal('show');
                 // Calculate remaining time
                 var remainingTime = end - today;
@@ -238,6 +238,10 @@
                     document.getElementById("remaining_time").innerHTML = "Registration closes in " + days + "d " + hours + "h " + minutes + "m " + seconds + "s";
                 }, 1000);
             }
+
+
+            // The registration form is accessible when the date is between start and end dates.
+
             document.getElementById("tournament_id").value = tournamentId;
             $(document).ready(function() {
                 $.get('/tournamentModal', function(data) {
