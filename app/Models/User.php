@@ -20,4 +20,8 @@ class User extends AuthenticatableUser implements Authenticatable
         return $this->belongsToMany(Tournament::class, 'tournament_players');
     }
 
+    public function clubs()
+    {
+        return $this->belongsToMany(Club::class, 'user_club');
+    }
 }

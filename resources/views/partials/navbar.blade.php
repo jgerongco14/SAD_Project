@@ -18,7 +18,7 @@
                 @endguest
                 @auth
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('clubsPage') }}">Clubs</a>
+                    <a class="nav-link active" href="{{ route('viewListClubs') }}">Clubs</a>
                 </li>
                 @endauth
                 <li class="nav-item">

@@ -19,14 +19,14 @@
     <br><br><br>
     <div class="container">
         <div class="col d-flex justify-content-end">
-             <a href="{{ route('home') }}"><button class="btn btn-secondary " type="button">Back</button></a>
+            <a href="{{ route('home') }}"><button class="btn btn-secondary " type="button">Back</button></a>
         </div>
         <h1 class="text-center fw-bolder mt-3">Coach List</h1>
         <div class="row mt-3">
             <div class="col">
                 <p class="fw-bold">1 COACH/ES</p>
             </div>
-            <div class="col d-flex">
+            <!-- <div class="col d-flex">
                 <select class="form-select" aria-label="Default select example">
                     <option selected>City</option>
                     <option value="1">Davao City</option>
@@ -36,7 +36,7 @@
                 <input class="form-control mx-3" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn bg-success" type="submit">Search</button>
 
-            </div>
+            </div> -->
         </div>
         <div class="table-scroll mt-4">
             <table class="table ">
@@ -57,7 +57,7 @@
                     @foreach ($users as $user)
                     <tr>
                         @if ($user->photo)
-                        <td class="align-middle text-center"><img src="{{ route('image.show', ['id' => $user->id]) }}" style="height: 100px; width: 100px;" class="rounded-circle img-bot"></td>
+                        <td class="align-middle text-center"><img src="{{ asset('storage/' . $user->photo) }}" style="height: 100px; width: 100px;" class="rounded-circle img-bot"></td>
                         @else
                         <td class="align-middle text-center"><img src="{{ asset('image/pro_icon.png') }}" style="height: 100px; width: 100px;" class="rounded-circle img-bot"></td>
                         @endif
@@ -94,13 +94,13 @@
                             </div>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
-                @endforeach
             </table>
         </div>
     </div>
     @endsection
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>

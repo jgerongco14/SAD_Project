@@ -78,6 +78,8 @@
                                     <h6 class="fw-bold ">Age Range: {{ $data->age_range }}</h6>
                                     <h6 class="fw-bold ">Sponsored by: {{ $data->sponsor }}</h6>
                                 </div>
+                            </div>
+                            <div class="card-footer">
                                 <div class="col text-center mt-4 my-3">
                                     <a href="{{ route('viewTourna', $data->id) }}"><button type="button" class="btn btn-warning w-75 fw-bold">More Info</button></a>
                                 </div>
@@ -89,8 +91,8 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
                 </div>
+                @endforeach
             </div>
         </div>
     </div>

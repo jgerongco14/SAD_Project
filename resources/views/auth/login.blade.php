@@ -22,7 +22,7 @@
                 <h4 class="fw-bold text-center " style="color: white">“Pickleball is cheaper than therapy.”</h4>
             </div>
             <div class="col-9 d-flex justify-content-center align-items-center">
-                <div class="card h-75 w-75 bg-dark">
+                <div class="card h-50 w-50 bg-dark">
                     <div class="card-body bgcard">
                         <div class="col-12">
                             <form action="{{route('login-user')}}" method="POST">
@@ -65,14 +65,14 @@
                                         <span class="text-danger"> @error('password') {{$message}} @enderror</span>
                                     </div>
                                     <div class="row justify-content-end my-2">
-                                        <div class="col-7">
+                                        <div class="col-4">
                                             <a href="{{route('registration')}}" class="fw-bold text-warning">SIGN UP HERE!</a>
                                         </div>
-                                        <div class="col-4">
+                                        <!-- <div class="col-4">
                                             <a href="" class="fw-bold text-warning">Forgot your password?</a>
-                                        </div>
+                                        </div> -->
                                     </div>
-                                    <div class="row text-center mt-5">
+                                    <div class="row text-center my-4">
                                         <div class="form-group">
                                             <button class="btn btn-warning w-50 fw-bold" type="submit">LOGIN</button>
                                         </div>

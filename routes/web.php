@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\ClubController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\ViewPageController;
 use App\Http\Controllers\PostController;
-use Illuminate\Auth\Events\Login;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -116,7 +117,6 @@ Route::get('/player', [DataController::class, 'showPlayerTable'])->name('playert
 //show table for coach and player/coach
 Route::get('/coach', [DataController::class, 'showCoachTable'])->name('coachtable');
 
-
 //create tournament insert data
 Route::post('/manage tournament', [PostController::class, 'create_tournamentForm'])->name('create_tournamentForm');
 
@@ -132,7 +132,7 @@ Route::put('/admin_table/{id}', [PostController::class, 'approvedTournamentByAdm
 
 
 //if it click approve button it will update the status in the database
- Route::get('/view_tourna/{id}', [DataController::class, 'viewTourna'])->name('viewTourna');
+Route::get('/view_tourna/{id}', [DataController::class, 'viewTourna'])->name('viewTourna');
 
 
 // display data to modal in tournament
@@ -152,3 +152,18 @@ Route::put('/unapprove_players/{id}', [PostController::class, 'tournamentAdmin']
 
 // display data to table in view_tourna in tabpanel requests registration but it is from the tournament_players database
 Route::get('/approved_players/{tournamentId}', [DataController::class, 'approvedPlayers'])->name('approvedPlayers');
+
+//create club insert data
+Route::post('/clubRegistration', [ClubController::class, 'createClub'])->name('createClub');
+
+//create club insert data
+Route::get('/clubList', [ClubController::class, 'viewListClubs'])->name('viewListClubs');
+
+//user can join the club
+Route::post('/join-club', [ClubController::class, 'joinClub'])->name('join.club');
+
+//display view club individually
+Route::get('/viewClub/{id}', [ClubController::class, 'viewClub'])->name('viewClub');
+
+//display players or coaches that join the club
+Route::get('/clubMembers/{clubId}', [ClubController::class, 'viewClubMembers'])->name('viewClubMembers');

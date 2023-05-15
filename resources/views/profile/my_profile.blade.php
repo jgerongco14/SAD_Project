@@ -46,7 +46,9 @@
 <body>
     @extends('partials.navbar')
     @section('content')
-    <br><br>
+    <div class="col d-flex justify-content-end">
+        <a href="{{ route('home') }}"><button class="btn btn-secondary " type="button">Back</button></a>
+    </div>
     <div class="container my-4">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item active">
@@ -68,7 +70,8 @@
                             <h2 class="fw-bold ">Personal Information</h2>
                         </div>
                         <div class="col d-flex justify-content-end">
-                            <button class="btn btn-primary mx-1" id="editBtn" name="editBtn">Edit</button>
+                            <a><button class="btn btn-primary mx-1" id="editBtn" name="editBtn">Edit</button></a>
+                            <a href="{{ route('home') }}"><button class="btn btn-secondary " type="button">Back</button></a>
                         </div>
                     </div>
                     <div class="col d-flex justify-content-center">
@@ -138,10 +141,10 @@
                                     <div class="form-group">
                                         <label for="role">Role:</label>
                                         <select class="form-select" id="role" name="role" aria-label="Default select example" readonly disabled>
-                                            <option selected>Role</option>
-                                            <option value="Player" {{ $role === 'player' ? 'selected' : '' }}>Player</option>
-                                            <option value="Coach" {{ $role === 'coach' ? 'selected' : '' }}>Coach</option>
-                                            <option value="Player/Coach" {{ $role === 'player/coach' ? 'selected' : '' }}>Playing/Coach</option>
+                                            <option value="" selected disabled>Role</option>
+                                            <option value="Player" {{ $role === 'Player' ? 'selected' : '' }}>Player</option>
+                                            <option value="Coach" {{ $role === 'Coach' ? 'selected' : '' }}>Coach</option>
+                                            <option value="Player/Coach" {{ $role === 'Player/Coach' ? 'selected' : '' }}>Player/Coach</option>
                                         </select>
                                     </div>
                                 </div>
@@ -174,7 +177,12 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="birthdate">Birthdate:</label>
-                                        <input type="text" class="form-control" name="birthdate" id="birthdate" value="{{$user->birthdate}}" readonly>
+                                        <div class="input-group form-group date">
+                                            <span class="input-group-text">
+                                                <i class="bi bi-calendar"></i>
+                                            </span>
+                                            <input type="text" class="form-control" name="birthdate" id="birthdate" data-provide="datepicker" value="{{$user->birthdate}}" required>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

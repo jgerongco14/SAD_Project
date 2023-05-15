@@ -20,8 +20,7 @@
             <a href="{{ route('displayTourna') }}"><button class="btn btn-secondary " type="button">Back</button></a>
         </div>
         <div class="row">
-            <div class="col-7">
-
+            <div class="col">
                 <div class="col text-center mt-3">
                     <h2 class="fw-bold">Create Tournament</h2>
                 </div>
@@ -264,7 +263,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-5 mt-3 text-center">
+            <!-- <div class="col-5 mt-3 text-center">
                 <h2 class="fw-bold">My Tournament</h2>
                 <div class="col mt-4">
                     <h5 class="text-start text-decoration-underline">Ongoing Tournament</h5>
@@ -329,7 +328,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </div>

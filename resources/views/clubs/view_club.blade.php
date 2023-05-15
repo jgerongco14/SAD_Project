@@ -6,31 +6,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club Name</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
+    @extends('extentions.bootstrap_links')
+    @section('bootstrap_links')
+    @endsection
+    <style>
+        .clublogo {
+            object-fit: contain;
+        }
+    </style>
 </head>
 
 <body>
     @extends('partials.navbar')
     @section('content')
-
+    <br>
     <div class="container my-5 ">
-        <br>
         <div class="col-12">
             <div class="card">
-                <img src="/image/gallery/image8.jfif" class="card-img-top w-100" style="height: 250px;" />
+                <img src="{{ asset('storage/' . $club->clubLogo) }}" class="card-img-top w-100 clublogo" style="height: 250px;" />
                 <div class="card-body text-center">
-                    <h4 class=fw-bold>DAVAO DRINKERS CLUB</h4>
-                    <h5>Davao City</h5>
+                    <h4 class="fw-bold">{{ $club->id }}</h4>
+                    <h4 class="fw-bold">{{ $club->clubName }}</h4>
+                    <h5>{{ $club->originCity }}</h5>
                 </div>
             </div>
         </div>
         <div class="col mt-3">
-            <h2 class="fw-bold">Club Members</h2>
+            <div class="col d-flex">
+                <h2 class="fw-bold">Club Members</h2>
+                <div class="col d-flex justify-content-end">
+                    <a href="{{ route('viewListClubs') }}"><button class="btn btn-secondary " type="button">Back</button></a>
+                </div>
+            </div>
             <div class="table-scroll mt-4">
                 <table class="table ">
                     <thead class="text-center bg-dark sticky-top" style="color:white;">
                         <tr>
+                            <th>
+                                User ID
+                            </th>
                             <th>
                                 Photo
                             </th>
@@ -42,41 +56,139 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td class="align-middle text-center"><img src="/image/pro_icon.png" class="img-bot"></td>
-                            <td class="align-middle">
-                                <p class="text-decoration-underline fw-bold">SAMANTHA ELECHICON</p>
-                                <p class="mt-1"><span>CITY:</span> Davao City <br>
-                                    <span>AGE:</span> 21 <br>
-                                </p>
-                            </td>
-                            <td class="align-middle">
-                                <p class="text-center">SEND MESSAGE</p>
-                                <div class="row text-center">
-                                    <div class="col">
-                                        <a href="" type="btn"><img src="/image/insta.png" class="img-bot" style="height: 50px; width: 60px;"></a>
-                                    </div>
-                                    <div class="col">
-                                        <a href="" type="btn"><img src="/image/facebook.png" class="img-bot" style="height: 50px; width: 60px;"></a>
-                                    </div>
-                                    <div class="col">
-                                        <a href="" type="btn"><img src="/image/twitter.png" class="img-bot" style="height: 50px; width: 60px;"></a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
+                    <tbody id="clubMembers" class="clubMembers">
                     </tbody>
                 </table>
             </div>
         </div>
-
-
         @endsection
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function loadRegisteredPlayers() {
+            var clubId = "{{ $club->id }}";
+            var url = "{{ route('viewClubMembers', ['clubId' => ':clubId']) }}";
+            url = url.replace(':clubId', clubId);
+            // Make the AJAX request to retrieve the data
+            $.get(url, function(data) {
+                // Clear the table body
+                $('.clubMembers').empty();
 
+                // Iterate over the data and populate the table rows
+                data.forEach(function(item) {
+                    var row = $('<tr>');
+
+                    // Add user_id cell
+                    var registedIdCell = $('<td>').addClass('align-middle text-center');
+                    registedIdCell.append($('<h6>').addClass('user_id').text(item.user_id));
+                    row.append(registedIdCell);
+
+                    // Add photo cell
+                    var registeredphotoCell = $('<td>').addClass('align-middle text-center');
+                    var photo = $('<img>')
+                        .attr('src', item.photo)
+                        .addClass('rounded-circle')
+                        .css({
+                            'height': '100px',
+                            'width': '100px'
+                        })
+                        .click(function() {
+                            // Show the modal
+                            $('#myModal').modal('show');
+
+                            // Set the modal image source
+                            $('#modalImage').attr('src', $(this).attr('src'));
+                        });
+
+                    registeredphotoCell.append(photo);
+                    row.append(registeredphotoCell);
+
+                    var userCell = $('<td>').addClass('align-middle');
+                    var firstName = item.users.firstName ? item.users.firstName : '';
+                    var middleInitial = item.users.middleInitial ? item.users.middleInitial : '';
+                    var alias = item.users.alias ? item.users.alias : '';
+                    var lastName = item.users.lastName ? item.users.lastName : '';
+                    var suffix = item.users.suffix ? item.users.suffix : '';
+                    var userInfo = firstName + ' ' + middleInitial + ' ' + alias + ' ' + lastName + ' ' + suffix;
+                    var sex = item.users.sex ? item.users.sex : '';
+                    var nationality = item.users.nationality ? item.users.nationality : '';
+                    var email = item.users.email ? item.users.email : '';
+                    userCell.append($('<h6>').addClass('userInfo').text('Name: ' + userInfo));
+                    userCell.append($('<h6>').addClass('sex').text('Sex: ' + sex));
+                    userCell.append($('<h6>').addClass('nationality').text('Nationality: ' + nationality));
+                    userCell.append($('<h6>').addClass('email').text('Email: ' + email));
+                    row.append(userCell);
+
+
+                    var socialLinkCell = $('<td>').addClass('align-middle text-center');
+                    var instagramLink = item.users.instagramLink;
+                    var facebookLink = item.users.facebookLink;
+                    var twitterLink = item.users.twitterLink;
+                    var rowElement = $('<div>').addClass('row justify-content-center');
+
+                    // Add Instagram link if available
+                    if (instagramLink) {
+                        var instagramImg = $('<img>').attr('src', '/image/insta.png').addClass('img-bot').css({
+                            'height': '50px',
+                            'width': '60px'
+                        });
+                        var instagramLinkElement = $('<a>').attr('href', instagramLink).attr('target', '_blank').append(instagramImg);
+                        rowElement.append($('<div>').addClass('col-2 mx-2').append(instagramLinkElement));
+                    } else {
+                        var defaultInstagramImg = $('<img>').attr('src', '/image/insta.png').addClass('img-bot').css({
+                            'height': '50px',
+                            'width': '60px'
+                        });
+                        rowElement.append($('<div>').addClass('col-2 mx-2').append(defaultInstagramImg));
+                    }
+                    // Add Facebook link if available
+                    if (facebookLink) {
+                        var facebookImg = $('<img>').attr('src', '/image/facebook.png').addClass('img-bot').css({
+                            'height': '50px',
+                            'width': '60px'
+                        });
+                        var facebookLinkElement = $('<a>').attr('href', facebookLink).attr('target', '_blank').append(facebookImg);
+                        rowElement.append($('<div>').addClass('col-2 mx-2').append(facebookLinkElement));
+                    } else {
+                        var defaultFacebookImg = $('<img>').attr('src', '/image/facebook.png').addClass('img-bot').css({
+                            'height': '50px',
+                            'width': '60px'
+                        });
+                        rowElement.append($('<div>').addClass('col-2 mx-2').append(defaultFacebookImg));
+                    }
+
+                    // Add Twitter link if available
+                    if (twitterLink) {
+                        var twitterImg = $('<img>').attr('src', '/image/twitter.png').addClass('img-bot').css({
+                            'height': '50px',
+                            'width': '60px'
+                        });
+                        var twitterLinkElement = $('<a>').attr('href', twitterLink).attr('target', '_blank').append(twitterImg);
+                        rowElement.append($('<div>').addClass('col-2 mx-2').append(twitterLinkElement));
+                    } else {
+                        var defaultTwitterImg = $('<img>').attr('src', '/image/twitter.png').addClass('img-bot').css({
+                            'height': '50px',
+                            'width': '60px'
+                        });
+                        rowElement.append($('<div>').addClass('col-2 mx-2').append(defaultTwitterImg));
+                    }
+
+                    socialLinkCell.append(rowElement);
+                    row.append(socialLinkCell);
+
+                    // Append the row to the table body
+                    $('.clubMembers').append(row);
+                });
+            }).fail(function(xhr, status, error) {
+                console.log(xhr.responseText);
+                console.log(status);
+                console.log(error);
+            });
+        }
+        $(document).ready(function() {
+            loadRegisteredPlayers();
+        });
+    </script>
 </body>
 
 </html>

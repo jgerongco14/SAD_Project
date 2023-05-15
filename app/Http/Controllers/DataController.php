@@ -40,13 +40,6 @@ class DataController extends Controller
         }
     }
 
-
-    public function showtable()
-    {
-        $users = User::all(); // Fetch data from user table
-        return view('table', ['users' => $users]); /// Pass the users data to the view
-    }
-
     public function showPlayerTable()
     {
         $users = User::whereIn('role', ['player', 'player/coach'])

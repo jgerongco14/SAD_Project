@@ -21,7 +21,7 @@
             <a href="{{ route('home') }}"><button class="btn btn-secondary " type="button">Back</button></a>
         </div>
         <h1 class="text-center fw-bolder mt-3">Player List</h1>
-        <div class="row mt-3">
+        <!-- <div class="row mt-3">
             <div class="col">
                 <p class="fw-bold">1 PLAYER/S</p>
             </div>
@@ -36,7 +36,7 @@
                 <button class="btn bg-success" type="submit">Search</button>
 
             </div>
-        </div>
+        </div> -->
         <div class="table-scroll mt-4">
             <table class="table ">
                 <thead class="text-center bg-dark sticky-top" style="color:white;">
@@ -56,7 +56,7 @@
                     @foreach ($users as $user)
                     <tr>
                         @if ($user->photo)
-                        <td class="align-middle text-center"><img src="{{ route('image.show', ['id' => $user->id]) }}" style="height: 100px; width: 100px;" class="rounded-circle img-bot"></td>
+                        <td class="align-middle text-center"><img src="{{ asset('storage/' . $user->photo) }}" style="height: 100px; width: 100px;" class="rounded-circle img-bot"></td>
                         @else
                         <td class="align-middle text-center"><img src="{{ asset('image/pro_icon.png') }}" style="height: 100px; width: 100px;" class="rounded-circle img-bot"></td>
                         @endif
@@ -64,7 +64,6 @@
                             <p class=" fw-bold">{{ $user['firstName'] }} '{{ $user['alias'] }}' {{ $user['middleInitial'] }} {{ $user['lastName'] }}</p>
                             <p class="mt-1"><span>CITY:</span> {{ $user['city'] }} <br>
                                 <span>Role:</span> {{ $user['role'] }} <br>
-
                             </p>
                         </td>
                         <td class="align-middle">
