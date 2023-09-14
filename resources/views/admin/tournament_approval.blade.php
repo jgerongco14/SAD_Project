@@ -117,7 +117,7 @@
                                     </script>
                                     @endif
                                     @method('put')
-                                    <button type="submit" class="btn btn-primary mt-2" onclick="return confirm('Are you sure you want to Approve this Tournament?')">Approved</button>
+                                    <button type="submit" class="btn btn-primary mt-2" onclick="return confirm('Are you sure you want to Approve this Tournament?')">Approve</button>
                                 </form>
 
                                 <!-- 

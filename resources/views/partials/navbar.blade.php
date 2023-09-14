@@ -17,9 +17,11 @@
                 </li>
                 @endguest
                 @auth
+                @if(auth()->user()->usertype === 'user')
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ route('viewListClubs') }}">Clubs</a>
                 </li>
+                @endif
                 @endauth
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ route('galleryPage') }}">Gallery</a>
@@ -27,6 +29,14 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="{{route('aboutPickleBallPage')}}">About Pickleball</a>
                 </li>
+                @auth
+                @if(auth()->user()->usertype === 'admin')
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('admin') }}">Management</a>
+                </li>
+                @endif
+                @endauth
+
             </ul>
 
             <div class="col-3">

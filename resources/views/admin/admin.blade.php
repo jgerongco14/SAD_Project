@@ -22,7 +22,7 @@
                 <h1 style="color: white; font-size: 50;"> <span>Pickleball</span> </h1>
                 <p style="color: white;">Davao Dinkers Club | Pickleball Partners<br></p>
                 <a class="btn btn-warning w-25 my-2" href="{{route('unapprovedTournament')}}" role="button">Manage Tournaments</a>
-                <a class="btn btn-warning w-25 my-2" href="" role="button">Manage Clubs</a>
+                <!-- <a class="btn btn-warning w-25 my-2" href="" role="button">Manage Clubs</a> -->
             </div>
         </div>
     </div>
