@@ -1,5 +1,7 @@
 span {
     font-weight: bold;
+<<<<<<< HEAD
+=======
 }
 
 .btn-circle {
@@ -21,4 +23,5 @@ span {
 .table-scroll {
     max-height: 70vh;
     overflow-y: auto;
+>>>>>>> master
 }

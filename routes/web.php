@@ -79,7 +79,6 @@ Route::get('/view_club', function () {
 });
 
 
-
 //back-end routes
 
 // login and register controller
