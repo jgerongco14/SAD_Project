@@ -1,0 +1,110 @@
+LARAVEL DOCUMENTATION
+- download composer from google
+- open cmd and type "composer"
+- go to https://laravel.com/docs/9.x/installation to install the laravel (php)
+- you should have node.js, php and npm installed on the laptop as the requirements
+- open cmd
+- the recommendation is to use the xampp -> htdocs -> project filename
+- but what I did is I create folder outside xampp
+- in the cmd type "composer create-project laravel/laravel example-app(filename) 8.0 (laravel version)"
+- or other way to have laravel project - composer global require laravel/installer
+ 				       - laravel new cd example-app 
+- cd (filename)
+- to download auth -"composer require laravel/ui"
+- type: "php artisan ui bootstrap (since we will use bootstrap) "
+- type: npm install 
+- type: npm run dev (so that the dependencies will be compiled)a
+- yes (Do you want to install 'webpack-cli' (yes/no): no)
+
+
+
+// other way
+cmd
+
+- to download auth -"composer require laravel/ui"
+- php artisan ui bootstrap --auth
+- php artisan 
+
+
+DATABASE
+
+Player/Coach
+
+User_id 
+Photo
+First name
+Last name
+Middle initial
+Nickname/Alias
+Sex
+Address
+Province
+City
+Country
+Nationality
+Birth date
+Email
+Contact no.
+Tel no.
+Role
+Facebook
+Instagram
+Twitter
+Username
+Password
+
+
+Clubs
+
+Club_id
+Club name
+Club_logo
+President
+City
+User_id (FK) (as members)
+Status - via admin
+
+
+Tournament
+
+Tournament_id
+Name
+logo
+Address
+Category
+Age
+Description
+Moderator
+Date
+Sponsor
+Qrcode_photo
+payment(photo)
+Status - via admin
+Poster (photo)
+poster_title
+Description
+
+
+Tournament_Registration
+
+Tourna_reg_id
+Tournament_id (FK)
+User_id (FK)
+payment(photo)
+Status - via admin
+Sponsor - admin side
+Sponsor_id
+Name
+Logo
+
+
+Event 
+
+Event_id
+Tournament_id
+Poster
+Poster_title
+Description
+Qrcode_photo
+
+
